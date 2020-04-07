@@ -11,9 +11,7 @@ import { faLaughWink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faLaughWink)
-
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 Vue.config.productionTip = false
 Vue.use(firestorePlugin)
 

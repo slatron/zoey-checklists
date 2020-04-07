@@ -42,7 +42,6 @@
       </div>
     </label>
     <textarea v-model="form_data.comments" placeholder="Comment"></textarea>
-    {{days}}
   </div>
 </template>
 
