@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import HomeschoolDay from '@/components/HomeschoolDay.vue'
 
 export default {
