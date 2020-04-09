@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Homeschool from './views/Homeschool.vue'
+import HomeschoolAddView from './views/HomeschoolAddView.vue'
 
 Vue.use(Router)
 
@@ -9,7 +9,12 @@ export default new Router({
     {
       path: '/',
       name: 'homeschool',
-      component: Homeschool
+      component: HomeschoolAddView
+    },
+    {
+      path: '/homeschool/read',
+      name: 'rules',
+      component: () => import(/* webpackChunkName: "about" */ './views/HomeschoolReadView.vue')
     },
     {
       path: '/rules',
