@@ -7,9 +7,10 @@ Made to keep track of my child's schoolwork during stay-at-home schooling
 - [node](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 - [firebase](https://firebase.google.com)
-  - Account with a new database and user setup with email/password authentication
+  - Account with a new database
+  - Admin user created with email/password authentication
 
-### init
+### Initilization
 
 1 Make a local clone and run npm install in the root directory
 
@@ -28,3 +29,5 @@ See the [Firebase Docs](https://firebase.google.com/docs/web/setup?authuser=0) f
 ```
 $ npm run serve
 ```
+
+Local server should be here: [http://localhost:8080/](http://localhost:8080/)

@@ -18,7 +18,7 @@
     </label>
     <textarea v-model="form_data.comments" placeholder="Comment"></textarea>
     <button
-      v-if="approved"
+      v-if="user_logged_in && approved"
       @click="saveDay()"
       class="but-save">
       SAVE
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      days: [],
+      // days: [],
       labels: [
         {key: 'math', name: 'Math'},
         {key: 'science', name: 'Science'},
@@ -62,9 +62,9 @@ export default {
       user_logged_in: false,
     }
   },
-  firestore: {
-    days: db.collection('homeschool')
-  },
+  // firestore: {
+  //   days: db.collection('homeschool')
+  // },
   created: function() {
     const vm = this
     Auth.onAuthStateChanged(function(user) {
@@ -79,24 +79,11 @@ export default {
     saveDay: function() {
       // Eventually, we should be enforcing one per day
       // let dates = this.days.map(day => day.date)
-      const adultCheck = prompt("What is the parent password?")
-      if (adultCheck === 'b') {
-        let post_data = this.form_data
-        post_data.approved = true
-        console.log('Saving ', post_data)
-        db.collection('homeschool')
-          .add(post_data)
-      }
-    }
-  },
-  watch: {
-    approved: function(checked) {
-      if (checked) {
-        const adultCheck = prompt("YO! Wassa Password, Fool?")
-        if (adultCheck !== 'a') {
-          this.approved = false
-        }
-      }
+      let post_data = this.form_data
+      post_data.approved = true
+      console.log('Saving ', post_data)
+      db.collection('homeschool')
+        .add(post_data)
     }
   }
 }
