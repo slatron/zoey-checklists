@@ -1,29 +1,9 @@
 # zoey-checklists
 
-## Project setup
-```
-npm install
-```
+Made to keep track of my child's schoolwork during stay-at-home schooling
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### init
 
-### Compiles and minifies for production
-```
-npm run build
-```
+To use this, make a local clone and create a `./secrets.js` file that exports your firebase config by default. Firebase authentication is set up to use web-based username and password.
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See the [Firebase Docs](https://firebase.google.com/docs/web/setup?authuser=0) for more info.

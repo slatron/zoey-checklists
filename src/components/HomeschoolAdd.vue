@@ -8,6 +8,7 @@
       :form-title="label.name"
     ></BigLabel>
     <label
+      v-if="user_logged_in"
       :class="{'done': approved}"
       class="approved"
       for="cb-approved">
@@ -27,7 +28,7 @@
 
 <script>
 // Fields:
-import { db } from '../db'
+import { db, Auth } from '../db'
 import { Timestamp } from '../db'
 import BigLabel from '@/components/BigLabel'
 
@@ -57,11 +58,22 @@ export default {
         special: false,
         writing: false
       },
-      approved: false
+      approved: false,
+      user_logged_in: false,
     }
   },
   firestore: {
     days: db.collection('homeschool')
+  },
+  created: function() {
+    const vm = this
+    Auth.onAuthStateChanged(function(user) {
+      if (user) {
+        vm.user_logged_in = true
+      } else {
+        vm.user_logged_in = false
+      }
+    });
   },
   methods: {
     saveDay: function() {
