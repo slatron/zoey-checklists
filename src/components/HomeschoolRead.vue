@@ -29,7 +29,7 @@ export default {
     }
   },
   firestore: {
-    days: db.collection('homeschool')
+    days: db.collection('homeschool').orderBy('date')
   },
   filters: {
     toDate: function(value) {
