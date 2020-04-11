@@ -1,6 +1,5 @@
 <template>
   <div class="homeschool-read">
-    ARTFARRRRT
     <HomeschoolRead />
   </div>
 </template>
