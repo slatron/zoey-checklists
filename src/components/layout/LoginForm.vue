@@ -33,33 +33,30 @@
 import { Auth } from '@/db';
 export default {
   name: 'LoginForm',
-  data () {
-    return {
-      username: '',
-      password: ''
-    }
-  },
   computed: {
     open_login_form () {
       return this.$store.state.layout.open_login_form
     },
+    username: {
+      get () {
+        return this.$store.state.auth.username
+      },
+      set (value) {
+        this.$store.commit('SET_LOGIN_USERNAME', value)
+      }
+    },
+    password: {
+      get () {
+        return this.$store.state.auth.password
+      },
+      set (value) {
+        this.$store.commit('SET_LOGIN_PASSWORD', value)
+      }
+    }
   },
   methods: {
     doLogin: function () {
-      const LoginForm = this
-      Auth.signInWithEmailAndPassword(this.username, this.password)
-        .then(function(response) {
-          LoginForm.$store.commit('TOGGLE_LOGIN', {'force': false})
-          LoginForm.username = ''
-        })
-        .catch(function(error) {
-          // to read error code
-          // const errorCode = error.code
-          LoginForm.$store.commit('SET_ERROR_MESSAGE', error.message)
-        })
-        .finally(function() {
-          LoginForm.password = ''
-        })
+      this.$store.dispatch('DO_LOGIN', {username: this.username, password: this.password})
     }
   }
 }
