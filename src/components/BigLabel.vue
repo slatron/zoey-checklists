@@ -4,7 +4,8 @@
     class="big-label"
     :for="'cb-' + formKey">
     {{actual_title}}
-    <font-awesome-icon icon="laugh-wink" />
+    <font-awesome-icon
+      icon="laugh-wink" />
     <input type="checkbox" :name="'cb-' + formKey" :id="'cb-' + formKey" v-model="formData[formKey]">
   </label>
 </template>

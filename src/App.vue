@@ -2,7 +2,6 @@
   <div id="app">
     <header
       v-if="ready"
-      class="centered-vert"
     >
       <button
         v-if="user_logged_in"
@@ -148,6 +147,9 @@ header {
   width: 100%;
   top: 0;
   z-index: 50;
+  display: flex;
+  flex-direction: row-reverse;
+
 }
 
 .big-label-area {
@@ -170,9 +172,10 @@ header {
   align-items: center;
   background-color: aqua;
   svg {
-    padding-left: 15px;
-    display: none;
-    color: #b71212;
+    padding-left: 350px;
+    transition: all .5s linear;
+    opacity: 0;
+    color: aqua;
   }
   &.approved {
     background-color: pink;
@@ -181,7 +184,9 @@ header {
     background-color: lime;
 
     svg {
-      display: block;
+      color: #b71212;
+      opacity: 1.0;
+      padding-left: 15px;
     }
 
     .but-save {
@@ -195,14 +200,14 @@ header {
 
 .login-form-container {
   padding: 0.25em;
-  border-right: 1px solid #000;
+  border-left: 1px solid #000;
   border-bottom: 1px solid #000;
-  border-radius: 0 0 1rem 0;
+  border-radius: 0 0 0 1rem;
   width: 250px;
   background: #ccc;
   position: fixed;
   top: 30px;
-  left: 0;
+  right: 0;
   z-index: 100;
 }
 
@@ -211,6 +216,7 @@ header {
   color: blue;
   background: none;
   cursor: pointer;
+  outline: none;
 }
 
 .button-row-submit {
