@@ -50,6 +50,13 @@
         </div>
       </form>
     </div>
+    <section
+      v-show="error_msg.length"
+      class="login-error-message block-area"
+      @click="clearError()"
+    >
+      {{error_msg}}
+    </section>
     <router-view />
   </div>
 </template>
@@ -65,7 +72,8 @@ export default {
       username: '',
       password: '',
       user_logged_in: false,
-      ready: false
+      ready: false,
+      error_msg: ''
     }
   },
   mounted: function() {
@@ -94,7 +102,8 @@ export default {
         })
         .catch(function(error) {
           // const errorCode = error.code
-          // const errorMessage = error.message
+          const errorMessage = error.message
+          vm.error_msg = errorMessage
         })
         .finally(function() {
           vm.password = ''
@@ -102,6 +111,9 @@ export default {
     },
     logoutUser: function() {
       if (Auth.currentUser) Auth.signOut()
+    },
+    clearError: function() {
+      this.error_msg  = ''
     }
   }
 }
@@ -142,7 +154,7 @@ header {
   margin: 1em;
 }
 
-.big-label-area label {
+.big-label-area label.big-label {
   font-size: 36px;
   font-weight: bold;
   display: block;
@@ -206,6 +218,14 @@ header {
   padding: 0.5em;
 }
 
+.login-error-message {
+  background: pink;
+  border-radius: 1em;
+  border: 2px solid red;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 // Shared layout classes
 .centered {
   display: flex;
@@ -215,5 +235,17 @@ header {
 .centered-vert {
   display: flex;
   align-items: center;
+}
+.block-area {
+  padding: 1em;
+  margin: 1em;
+  display: block;
+  width: 100%;
+}
+.block-area-half {
+  padding: 0.5em;
+  margin: 0.5em;
+  display: block;
+  width: 100%;
 }
 </style>

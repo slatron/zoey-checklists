@@ -1,8 +1,9 @@
 <template>
   <label
     :class="{'done': formData[formKey]}"
+    class="big-label"
     :for="'cb-' + formKey">
-    {{formTitle}}
+    {{actual_title}}
     <font-awesome-icon icon="laugh-wink" />
     <input type="checkbox" :name="'cb-' + formKey" :id="'cb-' + formKey" v-model="formData[formKey]">
   </label>
@@ -15,6 +16,13 @@ export default {
     formData: { 'type': Object, 'default': {} },
     formKey: { 'type': String, 'default': '' },
     formTitle: { 'type': String, 'default': ''}
+  },
+  computed: {
+    actual_title () {
+      return this.formTitle === 'Special'
+        ? this.formData.special_choice
+        : this.formTitle
+    }
   }
 }
 </script>
