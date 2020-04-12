@@ -1,10 +1,10 @@
 export default {
   state: {
-    username: ''
+    user_logged_in: false
   },
   mutations: {
-    setUsername (state, options = {}) {
-      state.username = options.username
+    SET_LOGIN_STATUS (state, options = {}) {
+      state.user_logged_in = options.status === true ? true : false
     }
   }
 }

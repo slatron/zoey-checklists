@@ -32,7 +32,7 @@
 <script>
 import { Auth } from '@/db';
 export default {
-  name: 'AppLayout',
+  name: 'LoginForm',
   data () {
     return {
       username: '',
@@ -46,19 +46,19 @@ export default {
   },
   methods: {
     doLogin: function () {
-      const vm = this
+      const LoginForm = this
       Auth.signInWithEmailAndPassword(this.username, this.password)
         .then(function(response) {
-          vm.$store.commit('TOGGLE_LOGIN', {'force': false})
-          vm.username = ''
+          LoginForm.$store.commit('TOGGLE_LOGIN', {'force': false})
+          LoginForm.username = ''
         })
         .catch(function(error) {
           // to read error code
           // const errorCode = error.code
-          vm.$store.commit('SET_ERROR_MESSAGE', error.message)
+          LoginForm.$store.commit('SET_ERROR_MESSAGE', error.message)
         })
         .finally(function() {
-          vm.password = ''
+          LoginForm.password = ''
         })
     }
   }

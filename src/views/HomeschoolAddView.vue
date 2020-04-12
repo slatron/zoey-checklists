@@ -8,7 +8,7 @@
 import HomeschoolAdd from '@/components/HomeschoolAdd.vue'
 
 export default {
-  name: 'homeschool',
+  name: 'HomeschoolAddView',
   components: {
     HomeschoolAdd
   }

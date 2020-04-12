@@ -23,25 +23,13 @@
 import { Auth } from '@/db';
 export default {
   name: 'SiteHeader',
-  data () {
-    return {
-      user_logged_in: false
-    }
-  },
-  created: function() {
-    const vm = this
-    Auth.onAuthStateChanged(function(user) {
-      if (user) {
-        vm.user_logged_in = true
-      } else {
-        vm.user_logged_in = false
-      }
-    });
-  },
   computed: {
     open_login_form () {
       return this.$store.state.layout.open_login_form
     },
+    user_logged_in () {
+      return this.$store.state.auth.user_logged_in
+    }
   },
   methods: {
     toggleLogin: function (force) {

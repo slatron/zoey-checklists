@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <SiteHeader v-if="ready"></SiteHeader>
+  <div id="app" v-if="ready">
+    <SiteHeader></SiteHeader>
     <LoginForm></LoginForm>
     <ErrorMessage></ErrorMessage>
     <router-view />
@@ -19,6 +19,13 @@ export default {
     LoginForm,
     ErrorMessage,
     SiteHeader
+  },
+  created: function() {
+    const AppLayout = this
+    Auth.onAuthStateChanged(function(user) {
+      const logged_in = user ? true : false
+      AppLayout.$store.commit('SET_LOGIN_STATUS', {'status': logged_in})
+    });
   },
   data () {
     return {
