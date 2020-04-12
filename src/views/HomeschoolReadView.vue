@@ -8,7 +8,7 @@
 import HomeschoolRead from '@/components/HomeschoolRead.vue'
 
 export default {
-  name: 'homeschool',
+  name: 'HomeschoolReadView',
   components: {
     HomeschoolRead
   }

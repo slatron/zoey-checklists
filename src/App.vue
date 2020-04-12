@@ -1,119 +1,39 @@
 <template>
-  <div id="app">
-    <header
-      v-if="ready"
-    >
-      <button
-        v-if="user_logged_in"
-        class="button-header"
-        @click="logoutUser()"
-      >
-        Logout
-      </button>
-      <button
-        v-if="!user_logged_in"
-        class="button-header"
-        @click="toggleLogin()"
-      >
-        <span v-show="!open_login_form">+</span>
-        <span v-show="open_login_form">-</span>
-        Login
-      </button>
-    </header>
-    <div class="login-form-container" v-if="open_login_form">
-      <form @submit.prevent>
-        <fieldset>
-          <label for="uname-input">Username:</label>
-          <input
-            autocomplete="off"
-            id="uname-input"
-            v-model="username"
-            type="text"
-          >
-        </fieldset>
-        <fieldset>
-          <label for="pass-input">Password:</label>
-          <input
-            autocomplete="off"
-            id="pass-input"
-            v-model="password"
-            type="password"
-          >
-        </fieldset>
-        <div class="button-row-submit">
-          <button
-            @click="doLogin()"
-          >
-            login
-          </button>
-        </div>
-      </form>
-    </div>
-    <section
-      v-show="error_msg.length"
-      class="login-error-message block-area"
-      @click="clearError()"
-    >
-      {{error_msg}}
-    </section>
+  <div id="app" v-if="ready">
+    <SiteHeader></SiteHeader>
+    <LoginForm></LoginForm>
+    <ErrorMessage></ErrorMessage>
     <router-view />
   </div>
 </template>
 
 <script>
 import { Auth } from './db';
+import LoginForm from '@/components/layout/LoginForm'
+import ErrorMessage from '@/components/layout/ErrorMessage'
+import SiteHeader from '@/components/layout/SiteHeader'
 
 export default {
   name: 'AppLayout',
+  components: {
+    LoginForm,
+    ErrorMessage,
+    SiteHeader
+  },
+  created: function() {
+    const AppLayout = this
+    Auth.onAuthStateChanged(function(user) {
+      const logged_in = user ? true : false
+      AppLayout.$store.commit('SET_LOGIN_STATUS', {'status': logged_in})
+    });
+  },
   data () {
     return {
-      open_login_form: false,
-      username: '',
-      password: '',
-      user_logged_in: false,
-      ready: false,
-      error_msg: ''
+      ready: false
     }
   },
   mounted: function() {
     this.ready = true
-  },
-  created: function() {
-    const vm = this
-    Auth.onAuthStateChanged(function(user) {
-      if (user) {
-        vm.user_logged_in = true
-      } else {
-        vm.user_logged_in = false
-      }
-    });
-  },
-  methods: {
-    toggleLogin: function () {
-      this.open_login_form = !this.open_login_form
-    },
-    doLogin: function () {
-      const vm = this
-      Auth.signInWithEmailAndPassword(this.username, this.password)
-        .then(function(response) {
-          vm.open_login_form = false
-          vm.username = ''
-        })
-        .catch(function(error) {
-          // const errorCode = error.code
-          const errorMessage = error.message
-          vm.error_msg = errorMessage
-        })
-        .finally(function() {
-          vm.password = ''
-        })
-    },
-    logoutUser: function() {
-      if (Auth.currentUser) Auth.signOut()
-    },
-    clearError: function() {
-      this.error_msg  = ''
-    }
   }
 }
 </script>
@@ -139,19 +59,7 @@ fieldset {
   padding-top: 31px;
 }
 
-header {
-  height: 30px;
-  border-bottom: 1px solid black;
-  background: #ccc;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  flex-direction: row-reverse;
-
-}
-
+// Sitewide Element Classes
 .big-label-area {
   margin: 1em;
 }
@@ -196,40 +104,6 @@ header {
   input {
     display: none;
   }
-}
-
-.login-form-container {
-  padding: 0.25em;
-  border-left: 1px solid #000;
-  border-bottom: 1px solid #000;
-  border-radius: 0 0 0 1rem;
-  width: 250px;
-  background: #ccc;
-  position: fixed;
-  top: 30px;
-  right: 0;
-  z-index: 100;
-}
-
-.button-header {
-  border: none;
-  color: blue;
-  background: none;
-  cursor: pointer;
-  outline: none;
-}
-
-.button-row-submit {
-  text-align: right;
-  padding: 0.5em;
-}
-
-.login-error-message {
-  background: pink;
-  border-radius: 1em;
-  border: 2px solid red;
-  cursor: pointer;
-  font-weight: bold;
 }
 
 // Shared layout classes

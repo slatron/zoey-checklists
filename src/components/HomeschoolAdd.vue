@@ -79,40 +79,30 @@ export default {
         {'text': 'Library', 'value': 'Library'},
         {'text': 'Music', 'value': 'Music'}
       ],
-      approved: false,
-      user_logged_in: false,
-      finished: false
+      approved: false
     }
   },
-  created: function() {
-    const vm = this
-    Auth.onAuthStateChanged(function(user) {
-      if (user) {
-        vm.user_logged_in = true
-      } else {
-        vm.user_logged_in = false
-      }
-    });
+  computed: {
+    user_logged_in () {
+      return this.$store.state.auth.user_logged_in
+    },
+    finished () {
+      return this.$store.state.school.day_finished
+    }
   },
   methods: {
     saveDay: function() {
       let post_data = this.form_data
       post_data.approved = true
-      const vm = this
-      db.collection('homeschool').add(post_data)
-        .then(function(response) {
-          vm.finished = true
-        })
-        .catch(function(error) {
-
-        })
+      this.$store.dispatch('SAVE_DAY', {
+        'post_data': post_data
+      })
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
 textarea {
   width: 100%;
   min-height: 100px;
@@ -122,5 +112,4 @@ textarea {
 label {
   font-weight: bold;
 }
-
 </style>

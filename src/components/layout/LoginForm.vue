@@ -1,0 +1,84 @@
+<template lang="html">
+  <div class="login-form-container" v-if="open_login_form">
+    <form @submit.prevent>
+      <fieldset>
+        <label for="uname-input">Username:</label>
+        <input
+          id="uname-input"
+          v-model="username"
+          type="text"
+        >
+      </fieldset>
+      <fieldset>
+        <label for="pass-input">Password:</label>
+        <input
+          id="pass-input"
+          v-model="password"
+          type="password"
+        >
+      </fieldset>
+      <div class="button-row-submit">
+        <button
+          @click="doLogin()"
+        >
+          login
+        </button>
+      </div>
+    </form>
+  </div>
+
+</template>
+
+<script>
+import { Auth } from '@/db';
+export default {
+  name: 'LoginForm',
+  computed: {
+    open_login_form () {
+      return this.$store.state.layout.open_login_form
+    },
+    username: {
+      get () {
+        return this.$store.state.auth.username
+      },
+      set (value) {
+        this.$store.commit('SET_LOGIN_USERNAME', value)
+      }
+    },
+    password: {
+      get () {
+        return this.$store.state.auth.password
+      },
+      set (value) {
+        this.$store.commit('SET_LOGIN_PASSWORD', value)
+      }
+    }
+  },
+  methods: {
+    doLogin: function () {
+      this.$store.dispatch('DO_LOGIN', {username: this.username, password: this.password})
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped>
+.login-form-container {
+  padding: 0.25em;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-radius: 0 0 0 1rem;
+  width: 250px;
+  background: #ccc;
+  position: fixed;
+  top: 30px;
+  right: 0;
+  z-index: 100;
+}
+
+.button-row-submit {
+  text-align: right;
+  padding: 0.5em;
+}
+
+</style>
