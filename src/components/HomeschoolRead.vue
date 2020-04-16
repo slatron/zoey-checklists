@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { db } from '../db'
-import { Timestamp } from '../db'
+import { db } from '@/db'
+import { Timestamp } from '@/db'
 
 export default {
   name: 'HomeschoolRead',

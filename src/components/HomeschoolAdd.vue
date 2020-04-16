@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import { db, Auth } from '../db'
-import { Timestamp } from '../db'
+import { db, Auth } from '@/db'
+import { Timestamp } from '@/db'
 import BigLabel from '@/components/BigLabel'
 
 export default {
