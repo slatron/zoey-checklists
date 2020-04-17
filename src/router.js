@@ -14,12 +14,17 @@ export default new Router({
     {
       path: '/homeschool/read',
       name: 'read homeschool',
-      component: () => import(/* webpackChunkName: "about" */ './views/HomeschoolReadView.vue')
+      component: () => import(/* webpackChunkName: "read homeschool" */ './views/HomeschoolReadView.vue')
+    },
+    {
+      path: '/chores',
+      name: 'chores',
+      component: () => import(/* webpackChunkName: "chores" */ './views/ChoredayAddView.vue')
     },
     {
       path: '/rules',
       name: 'rules',
-      component: () => import(/* webpackChunkName: "about" */ './views/Rules.vue')
+      component: () => import(/* webpackChunkName: "rules" */ './views/Rules.vue')
     }
   ]
 })

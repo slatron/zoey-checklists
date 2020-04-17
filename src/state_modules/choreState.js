@@ -6,13 +6,13 @@ export default {
   },
 
   mutations: {
-    SET_SCHOOLDAY_FINISHED (state, finished) {
+    SET_CHOREDAY_FINISHED (state, finished) {
       state.day_finished = finished
     }
   },
 
   actions: {
-    SAVE_SCHOOLDAY (state, options) {
+    SAVE_CHOREDAY (state, options) {
       db.collection('homeschool').add(options.post_data)
         .then(function(response) {
           state.commit('SET_SCHOOLDAY_FINISHED', true)

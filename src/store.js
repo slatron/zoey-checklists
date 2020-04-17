@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import authStateModule from '@/state_modules/authState'
 import layoutStateModule from '@/state_modules/layoutState'
 import schoolStateModule from '@/state_modules/schoolState'
+import choreStateModule from '@/state_modules/choreState'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ function builder (data) {
     modules: {
       auth: authStateModule,
       layout: layoutStateModule,
-      school: schoolStateModule
+      school: schoolStateModule,
+      chores: choreStateModule
     }
   })
 }
