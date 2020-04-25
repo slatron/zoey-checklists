@@ -48,7 +48,9 @@ export default {
         {key: 'bedroom', name: 'Clean Bedroom'},
         {key: 'violin', name: 'Play Violin'},
         {key: 'teeth', name: 'Brush Hair'},
-        {key: 'hair', name: 'Brush Teeth'}
+        {key: 'hair', name: 'Brush Teeth'},
+        {key: 'cats', name: 'Feed Cats'},
+        {key: 'sink', name: 'Clean Bathroom Sink'}
       ],
       form_data: {
         comments: '',
@@ -62,7 +64,9 @@ export default {
         bedroom: false,
         violin: false,
         teeth: false,
-        hair: false
+        hair: false,
+        cats: false,
+        sink: false
       },
       approved: false
     }
