@@ -1,21 +1,28 @@
 <template lang="html">
   <header>
-    <button
-      v-if="user_logged_in"
-      class="button-header"
-      @click="logoutUser()"
-    >
-      Logout
-    </button>
-    <button
-      v-if="!user_logged_in"
-      class="button-header"
-      @click="toggleLogin()"
-    >
-      Login
-      <span v-show="!open_login_form">+</span>
-      <span v-show="open_login_form">-</span>
-    </button>
+    <div>
+      <button type="button" class="hand" @click="toggleDrawer"">
+        <font-awesome-icon icon="bars" />
+      </button>
+    </div>
+    <div>
+      <button
+        v-if="user_logged_in"
+        class="button-header"
+        @click="logoutUser()"
+      >
+        Logout
+      </button>
+      <button
+        v-if="!user_logged_in"
+        class="button-header"
+        @click="toggleLogin()"
+      >
+        Login
+        <span v-show="!open_login_form">+</span>
+        <span v-show="open_login_form">-</span>
+      </button>
+    </div>
   </header>
 </template>
 
@@ -35,6 +42,9 @@ export default {
     toggleLogin: function (force) {
       this.$store.commit('TOGGLE_LOGIN', {'force': force})
     },
+    toggleDrawer: function () {
+      this.$store.commit('TOGGLE_DRAWER')
+    },
     logoutUser: function() {
       if (Auth.currentUser) Auth.signOut()
     }
@@ -42,7 +52,7 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 header {
   height: 30px;
   border-bottom: 1px solid black;
@@ -51,8 +61,17 @@ header {
   width: 100%;
   top: 0;
   z-index: 50;
+  padding: 0.25em;
+
+
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > div svg {
+    font-size: 26px;
+  }
 }
 
 .button-header {

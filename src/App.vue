@@ -1,9 +1,35 @@
 <template>
-  <div id="app" v-if="ready">
+  <div
+    id="app"
+    v-if="ready"
+    class="layout-wrap"
+    :class="{'drawer-open': drawer_open}"
+  >
+    <nav id="drawer">
+      <ul>
+        <li>
+          <router-link to="/chores">
+            Chore List
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/">
+            Home School
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+    <div
+      v-if="drawer_open"
+      class="window-shade z-40 md:hidden"
+      @click="toggleDrawer()"
+    />
     <SiteHeader></SiteHeader>
     <LoginForm></LoginForm>
     <ErrorMessage></ErrorMessage>
-    <router-view />
+    <main class="default-content">
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -20,6 +46,16 @@ export default {
     ErrorMessage,
     SiteHeader
   },
+  data () {
+    return {
+      ready: false
+    }
+  },
+  computed: {
+    drawer_open () {
+      return this.$store.state.layout.drawer_open
+    }
+  },
   created: function() {
     const AppLayout = this
     Auth.onAuthStateChanged(function(user) {
@@ -27,14 +63,20 @@ export default {
       AppLayout.$store.commit('SET_LOGIN_STATUS', {'status': logged_in})
     });
   },
-  data () {
-    return {
-      ready: false
-    }
-  },
   mounted: function() {
     this.ready = true
-  }
+  },
+  methods: {
+    toggleDrawer: function () {
+      this.$store.commit('TOGGLE_DRAWER')
+    }
+  },
+  watch: {
+    // Close Drawer on route changes
+    '$route' (to, from) {
+      this.$store.commit('TOGGLE_DRAWER', { 'force': false })
+    }
+  },
 }
 </script>
 
@@ -42,6 +84,7 @@ export default {
 <style lang="scss">
 // reset styles
 body, html {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -56,7 +99,95 @@ fieldset {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   position: relative;
+}
+
+nav#drawer {
+  z-index: 50;
+  background: #aaa;
+}
+
+.drawer-open > nav#drawer {
+  left: 0;
+}
+
+.window-shade {
+  top: 45px;
+  transition-property: left, top;
+  transition-duration: .5s, .35s;
+  transition-timing-function: ease;
+  opacity: 0.75;
+  z-index: 20;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  position: fixed;
+  background: #000;
+}
+
+#drawer,
+.window-shade {
+  top: 45px;
+  transition-property: left, top;
+  transition-duration: .5s, .35s;
+  transition-timing-function: ease;
+}
+
+#drawer {
+  width: 250px;
+  left: -250px;
+  border-top: 3px solid purple;
+  border-right: 3px solid purple;
+  border-bottom: 3px solid purple;
+  border-radius: 0 1rem 1rem 0;
+  overflow-y: auto;
+  position: fixed;
+  bottom: 0;
+  max-height: 500px;
+
+  > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      margin: 5px;
+      padding: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  #drawer {
+    width: 325px;
+    left: -325px;
+    max-height: 150px;
+  }
+
+  #drawer,
+  .window-shade {
+    top: 55px;
+  }
+}
+
+.layout-wrap {
+  height: 100%;
+  position: relative;
+}
+
+main {
+  height: 100%;
   padding-top: 31px;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: 41px;
+  }
+}
+
+.default-content {
+  z-index: 0;
 }
 
 // Sitewide Element Classes
@@ -127,5 +258,8 @@ fieldset {
   margin: 0.5em;
   display: block;
   width: 100%;
+}
+.hand {
+  cursor: pointer;
 }
 </style>
