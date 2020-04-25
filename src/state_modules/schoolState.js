@@ -1,4 +1,4 @@
-import { db } from '@/db'
+import { db, Timestamp } from '@/db'
 
 export default {
   state: {
@@ -13,6 +13,7 @@ export default {
 
   actions: {
     SAVE_SCHOOLDAY (state, options) {
+      options.post_data.date = Timestamp.fromDate(new Date());
       db.collection('homeschool').add(options.post_data)
         .then(function(response) {
           state.commit('SET_SCHOOLDAY_FINISHED', true)
