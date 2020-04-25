@@ -38,19 +38,31 @@ export default {
   data() {
     return {
       labels: [
-        // Will need chores instead here
-        // - from db if possible, otherwise hardcode
-        // {key: 'math', name: 'Math'},
-        // {key: 'science', name: 'Science'},
-        // ...
+        {key: 'dishes', name: 'Do Dishes'},
+        {key: 'pickup', name: 'Pickup 10 Things'},
+        {key: 'foot', name: 'Foot Excercises'},
+        {key: 'feet', name: 'Wash Feet'},
+        {key: 'face', name: 'Wash Face & Hands'},
+        {key: 'lotion', name: 'Use Lotion'},
+        {key: 'sanitize', name: 'Sanitize Switches / Doorknobs'},
+        {key: 'bedroom', name: 'Clean Bedroom'},
+        {key: 'violin', name: 'Play Violin'},
+        {key: 'teeth', name: 'Brush Hair'},
+        {key: 'hair', name: 'Brush Teeth'}
       ],
       form_data: {
         comments: '',
         date: Timestamp.fromDate(new Date()),
-        // And here
-        // math: false,
-        // reading: false,
-        // ...
+        dishes: false,
+        pickup: false,
+        foot: false,
+        face: false,
+        lotion: false,
+        sanitize: false,
+        bedroom: false,
+        violin: false,
+        teeth: false,
+        hair: false
       },
       approved: false
     }

@@ -13,9 +13,9 @@ export default {
 
   actions: {
     SAVE_CHOREDAY (state, options) {
-      db.collection('homeschool').add(options.post_data)
+      db.collection('choredays').add(options.post_data)
         .then(function(response) {
-          state.commit('SET_SCHOOLDAY_FINISHED', true)
+          state.commit('SET_CHOREDAY_FINISHED', true)
         })
     },
   }
