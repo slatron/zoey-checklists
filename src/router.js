@@ -13,8 +13,8 @@ export default new Router({
     },
     {
       path: '/homeschool/read',
-      name: 'read homeschool',
-      component: () => import(/* webpackChunkName: "read homeschool" */ './views/HomeschoolReadView.vue')
+      name: 'read-homeschool',
+      component: () => import(/* webpackChunkName: "read-homeschool" */ './views/HomeschoolReadView.vue')
     },
     {
       path: '/chores',
