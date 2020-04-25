@@ -91,6 +91,9 @@ body, html {
 fieldset {
   border: none;
 }
+a {
+  color: #000;
+}
 
 // Layout
 #app {
@@ -136,32 +139,37 @@ nav#drawer {
 #drawer {
   width: 250px;
   left: -250px;
-  border-top: 3px solid purple;
-  border-right: 3px solid purple;
-  border-bottom: 3px solid purple;
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  border-bottom: 3px solid #000;
   border-radius: 0 1rem 1rem 0;
   overflow-y: auto;
   position: fixed;
   bottom: 0;
   max-height: 500px;
 
-  > ul {
+  ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+  }
 
-    > li {
-      margin: 5px;
-      padding: 0;
-    }
+  li {
+    margin: 5px;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
   }
 }
 
 @media (min-width: 768px) {
   #drawer {
-    width: 325px;
-    left: -325px;
-    max-height: 150px;
+    width: 175px;
+    left: -175px;
+    max-height: 100px;
   }
 
   #drawer,
