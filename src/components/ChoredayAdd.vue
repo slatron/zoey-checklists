@@ -1,20 +1,5 @@
 <template>
-  <div class="homeschool-area big-label-area">
-    <section class="block-area-half">
-      <label for="todays-special">Today's Special: </label>
-      <select
-        v-model="form_data.special_choice"
-        id="todays-special"
-        name="todays-special"
-      >
-        <option
-          v-for="option in special_options"
-          v-bind:value="option.value"
-        >
-          {{ option.text }}
-        </option>
-      </select>
-    </section>
+  <div class="choreday-area big-label-area">
     <BigLabel
       v-for="label in labels"
       :key="label.key"
@@ -46,38 +31,39 @@ import { Timestamp } from '@/db'
 import BigLabel from '@/components/BigLabel'
 
 export default {
-  name: 'HomeschoolDay',
+  name: 'ChoredayAdd',
   components: {
     BigLabel
   },
   data() {
     return {
       labels: [
-        {key: 'special', name: 'Special'},
-        {key: 'math', name: 'Math'},
-        {key: 'science', name: 'Science'},
-        {key: 'reading', name: 'Reading'},
-        {key: 'writing', name: 'Writing'},
-        {key: 'gym', name: 'Gym'}
+        {key: 'dishes', name: 'Do Dishes'},
+        {key: 'pickup', name: 'Pickup 10 Things'},
+        {key: 'foot', name: 'Foot Excercises'},
+        {key: 'feet', name: 'Wash Feet'},
+        {key: 'face', name: 'Wash Face & Hands'},
+        {key: 'lotion', name: 'Use Lotion'},
+        {key: 'sanitize', name: 'Sanitize Switches / Doorknobs'},
+        {key: 'bedroom', name: 'Clean Bedroom'},
+        {key: 'violin', name: 'Play Violin'},
+        {key: 'teeth', name: 'Brush Hair'},
+        {key: 'hair', name: 'Brush Teeth'}
       ],
       form_data: {
         comments: '',
-        special_choice: 'Art',
         date: Timestamp.fromDate(new Date()),
-        math: false,
-        reading: false,
-        science: false,
-        gym: false,
-        special: false,
-        writing: false
+        dishes: false,
+        pickup: false,
+        foot: false,
+        face: false,
+        lotion: false,
+        sanitize: false,
+        bedroom: false,
+        violin: false,
+        teeth: false,
+        hair: false
       },
-      special_options: [
-        {'text': 'Art', 'value': 'Art'},
-        {'text': 'Dance', 'value': 'Dance'},
-        {'text': 'Drama', 'value': 'Drama'},
-        {'text': 'Library', 'value': 'Library'},
-        {'text': 'Music', 'value': 'Music'}
-      ],
       approved: false
     }
   },
@@ -93,7 +79,7 @@ export default {
     saveDay: function() {
       let post_data = this.form_data
       post_data.approved = true
-      this.$store.dispatch('SAVE_SCHOOLDAY', {
+      this.$store.dispatch('SAVE_CHOREDAY', {
         'post_data': post_data
       })
     }
