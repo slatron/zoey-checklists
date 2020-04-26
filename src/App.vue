@@ -130,7 +130,7 @@ nav#drawer {
 
 #drawer,
 .window-shade {
-  top: 45px;
+  top: 39px;
   transition-property: left, top;
   transition-duration: .5s, .35s;
   transition-timing-function: ease;
@@ -156,7 +156,7 @@ nav#drawer {
 
   li {
     margin: 5px;
-    padding: 0;
+    padding: 10px 0;
   }
 
   a {
@@ -171,11 +171,6 @@ nav#drawer {
     left: -175px;
     max-height: 100px;
   }
-
-  #drawer,
-  .window-shade {
-    top: 55px;
-  }
 }
 
 .layout-wrap {
@@ -185,13 +180,7 @@ nav#drawer {
 
 main {
   height: 100%;
-  padding-top: 31px;
-}
-
-@media (min-width: 768px) {
-  main {
-    padding-top: 41px;
-  }
+  padding-top: 41px;
 }
 
 .default-content {
@@ -215,10 +204,9 @@ main {
   border-radius: 5px;
   margin-bottom: 5px;
   padding: 15px 25px;
-  display: flex;
-  align-items: center;
   background-color: aqua;
   svg {
+    position: absolute;
     padding-left: 350px;
     transition: all .5s linear;
     opacity: 0;
