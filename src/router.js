@@ -22,6 +22,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "chores" */ './views/ChoredayAddView.vue')
     },
     {
+      path: '/bonus',
+      name: 'bonus',
+      component: () => import(/* webpackChunkName: "bonus" */ './views/BonusAddView.vue')
+    },
+    {
       path: '/rules',
       name: 'rules',
       component: () => import(/* webpackChunkName: "rules" */ './views/Rules.vue')

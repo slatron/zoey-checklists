@@ -17,6 +17,11 @@
             Home School
           </router-link>
         </li>
+        <li>
+          <router-link to="/bonus">
+            Weekly B-B-B-Bonus
+          </router-link>
+        </li>
       </ul>
     </nav>
     <div
@@ -150,7 +155,7 @@ nav#drawer {
 
   ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0 0 0 15px;
     padding: 0;
   }
 
@@ -167,9 +172,9 @@ nav#drawer {
 
 @media (min-width: 768px) {
   #drawer {
-    width: 175px;
-    left: -175px;
-    max-height: 100px;
+    width: 205px;
+    left: -205px;
+    max-height: 170px;
   }
 }
 
