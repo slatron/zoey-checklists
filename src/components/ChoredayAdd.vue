@@ -9,16 +9,16 @@
     ></BigLabel>
     <label
       v-if="user_logged_in"
-      :class="{'done': approved}"
+      :class="{'done': form_data.approved}"
       class="approved big-label"
       for="cb-approved">
       Approved
       <font-awesome-icon icon="laugh-wink" />
-      <input type="checkbox" name="cb-approved" id="cb-approved" v-model="approved">
+      <input type="checkbox" name="cb-approved" id="cb-approved" v-model="form_data.approved">
     </label>
     <textarea v-model="form_data.comments" placeholder="Comment"></textarea>
     <button
-      v-if="!finished && user_logged_in && approved"
+      v-if="!finished && user_logged_in && form_data.approved"
       @click="saveDay()"
       class="but-save">
       SAVE
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { Timestamp } from '@/db'
 import BigLabel from '@/components/BigLabel'
 
 export default {
@@ -35,48 +34,21 @@ export default {
   components: {
     BigLabel
   },
-  data() {
-    return {
-      labels: [
-        {key: 'dishes', name: 'Do Dishes'},
-        {key: 'pickup', name: 'Pickup 10 Things'},
-        {key: 'foot', name: 'Foot Excercises'},
-        {key: 'feet', name: 'Wash Feet'},
-        {key: 'face', name: 'Wash Face & Hands'},
-        {key: 'lotion', name: 'Use Lotion'},
-        {key: 'sanitize', name: 'Sanitize Switches / Doorknobs'},
-        {key: 'bedroom', name: 'Clean Bedroom'},
-        {key: 'violin', name: 'Play Violin'},
-        {key: 'teeth', name: 'Brush Hair'},
-        {key: 'hair', name: 'Brush Teeth'},
-        {key: 'cats', name: 'Feed Cats'},
-        {key: 'sink', name: 'Clean Bathroom Sink'}
-      ],
-      form_data: {
-        comments: '',
-        date: Timestamp.fromDate(new Date()),
-        dishes: false,
-        pickup: false,
-        foot: false,
-        face: false,
-        lotion: false,
-        sanitize: false,
-        bedroom: false,
-        violin: false,
-        teeth: false,
-        hair: false,
-        cats: false,
-        sink: false
-      },
-      approved: false
-    }
+  created: function() {
+    this.$store.dispatch('GET_LABELS', {})
   },
   computed: {
+    labels () {
+      return this.$store.state.chores.labels
+    },
+    form_data () {
+      return this.$store.state.chores.form_data
+    },
     user_logged_in () {
       return this.$store.state.auth.user_logged_in
     },
     finished () {
-      return this.$store.state.school.day_finished
+      return this.$store.state.chores.day_finished
     }
   },
   methods: {
