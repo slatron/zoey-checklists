@@ -167,7 +167,7 @@
         </section>
       </div>
 
-      <div class="big-label-area">        
+      <div class="checklist-item">        
         <label
           v-if="user_logged_in"
           :class="{'done': form_data.approved}"

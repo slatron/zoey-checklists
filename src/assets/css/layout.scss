@@ -1,0 +1,49 @@
+// Layout
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  position: relative;
+}
+
+.drawer-open > nav#drawer {
+  left: 0;
+}
+
+.window-shade {
+  top: 45px;
+  transition-property: left, top;
+  transition-duration: .5s, .35s;
+  transition-timing-function: ease;
+  opacity: 0.75;
+  z-index: 20;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  position: fixed;
+  background: #000;
+}
+
+#drawer,
+.window-shade {
+  top: 39px;
+  transition-property: left, top;
+  transition-duration: .5s, .35s;
+  transition-timing-function: ease;
+}
+
+.layout-wrap {
+  height: 100%;
+  position: relative;
+}
+
+main {
+  height: 100%;
+  padding-top: 41px;
+}
+
+.default-content {
+  z-index: 0;
+}

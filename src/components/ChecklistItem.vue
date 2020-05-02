@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'BigLabel',
+  name: 'ChecklistItem',
   props: {
     formData: { 'type': Object, 'default': {} },
     formKey: { 'type': String, 'default': '' },

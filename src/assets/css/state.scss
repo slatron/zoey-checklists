@@ -1,0 +1,25 @@
+// Shared layout classes
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.centered-vert {
+  display: flex;
+  align-items: center;
+}
+.block-area {
+  padding: 1em;
+  margin: 1em;
+  display: block;
+  width: 100%;
+}
+.block-area-half {
+  padding: 0.5em;
+  margin: 0.5em;
+  display: block;
+  width: 100%;
+}
+.hand {
+  cursor: pointer;
+}

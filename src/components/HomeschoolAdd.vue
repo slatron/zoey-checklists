@@ -1,12 +1,12 @@
 <template>
-  <div class="homeschool-area big-label-area">
-    <BigLabel
+  <div class="homeschool-area checklist-item">
+    <ChecklistItem
       v-for="label in labels"
       :key="label.key"
       :form-data="form_data"
       :form-key="label.key"
       :form-title="label.name"
-    ></BigLabel>
+    ></ChecklistItem>
     <label
       v-if="user_logged_in"
       :class="{'done': approved}"
@@ -28,12 +28,12 @@
 
 <script>
 import { Timestamp } from '@/db'
-import BigLabel from '@/components/BigLabel'
+import ChecklistItem from '@/components/ChecklistItem'
 
 export default {
   name: 'HomeschoolDay',
   components: {
-    BigLabel
+    ChecklistItem
   },
   data() {
     return {
@@ -78,7 +78,6 @@ export default {
 
 <style scoped lang="scss">
 textarea {
-  width: 100%;
   min-height: 100px;
   font-size: 36px;
 }

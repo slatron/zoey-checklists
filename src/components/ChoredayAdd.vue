@@ -1,12 +1,12 @@
 <template>
-  <div class="choreday-area big-label-area">
-    <BigLabel
+  <div class="choreday-area checklist-item">
+    <ChecklistItem
       v-for="label in labels"
       :key="label.key"
       :form-data="form_data"
       :form-key="label.key"
       :form-title="label.name"
-    ></BigLabel>
+    ></ChecklistItem>
     <label
       v-if="user_logged_in"
       :class="{'done': form_data.approved}"
@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import BigLabel from '@/components/BigLabel'
+import ChecklistItem from '@/components/ChecklistItem'
 
 export default {
   name: 'ChoredayAdd',
   components: {
-    BigLabel
+    ChecklistItem
   },
   created: function() {
     this.$store.dispatch('GET_LABELS', {})
@@ -65,7 +65,6 @@ export default {
 
 <style scoped lang="scss">
 textarea {
-  width: 100%;
   min-height: 100px;
   font-size: 36px;
 }
