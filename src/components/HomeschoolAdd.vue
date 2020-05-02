@@ -1,20 +1,5 @@
 <template>
   <div class="homeschool-area big-label-area">
-    <section class="block-area-half">
-      <label for="todays-special">Today's Special: </label>
-      <select
-        v-model="form_data.special_choice"
-        id="todays-special"
-        name="todays-special"
-      >
-        <option
-          v-for="option in special_options"
-          v-bind:value="option.value"
-        >
-          {{ option.text }}
-        </option>
-      </select>
-    </section>
     <BigLabel
       v-for="label in labels"
       :key="label.key"
@@ -53,7 +38,6 @@ export default {
   data() {
     return {
       labels: [
-        {key: 'special', name: 'Special'},
         {key: 'math', name: 'Math'},
         {key: 'science', name: 'Science'},
         {key: 'reading', name: 'Reading'},
@@ -62,22 +46,13 @@ export default {
       ],
       form_data: {
         comments: '',
-        special_choice: 'Art',
         date: Timestamp.fromDate(new Date()),
         math: false,
         reading: false,
         science: false,
         gym: false,
-        special: false,
         writing: false
       },
-      special_options: [
-        {'text': 'Art', 'value': 'Art'},
-        {'text': 'Dance', 'value': 'Dance'},
-        {'text': 'Drama', 'value': 'Drama'},
-        {'text': 'Library', 'value': 'Library'},
-        {'text': 'Music', 'value': 'Music'}
-      ],
       approved: false
     }
   },
