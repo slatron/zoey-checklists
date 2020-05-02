@@ -10,7 +10,6 @@
       <p><b>Math</b>: {{day.math}}</p>
       <p><b>Science</b>: {{day.science}}</p>
       <p><b>Gym</b>: {{day.gym}}</p>
-      <p><b>Special</b>: {{day.special}}</p>
       <p><b>Approved</b>: {{day.approved}}</p>
       <p><b>Comments</b>: {{day.comments}}</p>
     </section>
