@@ -1,0 +1,23 @@
+body, html {
+  font-size: 20px;
+}
+fieldset {
+  border: none;
+}
+button {
+  background-color: $color-blue;
+  color: $color-white;
+  border-radius: $base-unit/2;
+  padding: $base-unit/2 $base-unit;
+
+  &:disabled {
+    background-color: $color-blue-lt;
+  }
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
