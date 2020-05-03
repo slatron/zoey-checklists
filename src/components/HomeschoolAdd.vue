@@ -1,5 +1,5 @@
 <template>
-  <div class="homeschool-area checklist-item">
+  <div class="homeschool-area checklist-items">
     <ChecklistItem
       v-for="label in labels"
       :key="label.key"
@@ -7,16 +7,9 @@
       :form-key="label.key"
       :form-title="label.name"
     ></ChecklistItem>
-    <label
-      v-if="user_logged_in"
-      :class="{'done': approved}"
-      class="approved big-label"
-      for="cb-approved">
-      Approved
-      <font-awesome-icon icon="laugh-wink" />
-      <input type="checkbox" name="cb-approved" id="cb-approved" v-model="approved">
-    </label>
-    <textarea v-model="form_data.comments" placeholder="Comment"></textarea>
+    <div class="comments-container">
+      <textarea v-model="form_data.comments" placeholder="Comment" class="list-comment"></textarea>
+    </div>
     <button
       v-if="!finished && user_logged_in && approved"
       @click="saveDay()"
@@ -75,14 +68,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-textarea {
-  min-height: 100px;
-  font-size: 36px;
-}
-
-label {
-  font-weight: bold;
-}
-</style>

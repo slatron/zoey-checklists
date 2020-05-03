@@ -1,12 +1,18 @@
 <template>
   <label
     :class="{'done': formData[formKey]}"
-    class="big-label"
-    :for="'cb-' + formKey">
-    {{formTitle}}
-    <font-awesome-icon
-      icon="laugh-wink" />
+    class="centered-vert"
+    :for="'cb-' + formKey"
+  >
     <input type="checkbox" :name="'cb-' + formKey" :id="'cb-' + formKey" v-model="formData[formKey]">
+    <font-awesome-icon
+      v-show="!formData[formKey]"
+      class="empty-square"
+      icon="square" />
+    <font-awesome-icon
+      v-show="formData[formKey]"
+      icon="check-square" />
+    <div class="checklist-text">{{formTitle}}</div>
   </label>
 </template>
 

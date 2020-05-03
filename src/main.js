@@ -7,12 +7,14 @@ import store from './store'
 
 // Font Awesome cli setup
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLaughWink } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faSquare } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faLaughWink)
 library.add(faBars)
+library.add(faSquare)
+library.add(faCheckSquare)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false

@@ -1,44 +1,62 @@
-.checklist-item {
+.checklist-items {
   margin: 1em;
 }
 
-.checklist-item label.big-label {
-  font-size: 36px;
+.checklist-items label {
   font-weight: bold;
-  display: block;
   text-align: left;
-  border-bottom: 4px solid black;
-  border-left: 4px solid black;
-  border-right: 4px solid black;
-  border-top: 4px solid black;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  padding: 15px 25px;
-  background-color: aqua;
-  svg {
-    position: absolute;
-    padding-left: 350px;
-    transition: all .5s linear;
-    opacity: 0;
-    color: aqua;
-  }
-  &.approved {
-    background-color: pink;
-  }
+  border-bottom: 1px solid $color-blue;
+  border-left: 1px solid $color-blue;
+  border-right: 1px solid $color-blue;
+  border-top: 1px solid $color-blue;
+  border-radius: 10px;
+  margin-bottom: $base-unit * 1.25;
+  padding: 15px $base-unit  ;
+  background-color: $color-white;
+  color: $color-blue;
+  height: 30px;
   &.done {
-    background-color: lime;
-
-    svg {
-      color: #b71212;
-      opacity: 1.0;
-      padding-left: 15px;
-    }
-
-    .but-save {
-      display: block;
-    }
+    background-color: $color-blue;
+    color: $color-white;
   }
   input {
     display: none;
   }
+  > svg {
+    margin-right: $base-unit;
+    border-radius: 5px;
+  }
+  > svg.empty-square {
+    color: $color-white;
+    border: 1px solid $color-blue;
+    margin-left: -1px;
+  }
+  &.done .checklist-text {
+    margin-left: 1px;
+  }
+}
+
+@media (min-width: 768px) {
+  .checklist-items label:hover {
+    background-color: $color-blue-lt;
+    color: $color-white;
+  }
+}
+
+.comments-container {
+  margin-right: $base-unit*2;
+}
+
+textarea.list-comment {
+  width: 100%;
+  min-height: 100px;
+  border-bottom: 1px solid $color-blue;
+  border-left: 1px solid $color-blue;
+  border-right: 1px solid $color-blue;
+  border-top: 1px solid $color-blue;
+  border-radius: 10px;
+  color: $color-blue;
+  outline: 0;
+  padding: $base-unit;
+  margin-bottom: $base-unit * 1.25;
 }

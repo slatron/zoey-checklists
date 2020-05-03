@@ -167,11 +167,11 @@
         </section>
       </div>
 
-      <div class="checklist-item">        
+      <div class="checklist-item">
         <label
           v-if="user_logged_in"
           :class="{'done': form_data.approved}"
-          class="approved big-label"
+          class="approved"
           for="cb-approved">
           Approved
           <font-awesome-icon icon="laugh-wink" />

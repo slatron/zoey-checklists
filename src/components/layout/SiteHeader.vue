@@ -74,6 +74,13 @@ header {
   }
 }
 
+button {
+  font-size: 10px;
+  padding: 0.25em;
+  margin: 0;
+  border-radius: 0;
+}
+
 .button-header {
   border: none;
   color: blue;
