@@ -1,26 +1,27 @@
 <template lang="html">
   <header>
-    <div>
-      <button type="button" class="hand" @click="toggleDrawer"">
+    <div class="header-left">
+      <button type="button" class="hand nav-bars" @click="toggleDrawer"">
         <font-awesome-icon icon="bars" />
       </button>
     </div>
-    <div>
+    <div class="header-center">
+      <h2>Zoey's Chore List</h2>
+    </div>
+    <div class="header-right">
       <button
         v-if="user_logged_in"
-        class="button-header"
         @click="logoutUser()"
       >
+        <font-awesome-icon icon="lock-open" />
         Logout
       </button>
       <button
         v-if="!user_logged_in"
-        class="button-header"
         @click="toggleLogin()"
       >
+        <font-awesome-icon icon="lock" />
         Login
-        <span v-show="!open_login_form">+</span>
-        <span v-show="open_login_form">-</span>
       </button>
     </div>
   </header>
@@ -53,40 +54,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-  height: 30px;
-  border-bottom: 1px solid black;
-  background: #ccc;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 50;
-  padding: 0.25em;
-
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-
-  > div svg {
-    font-size: 26px;
-  }
-}
-
 button {
-  font-size: 10px;
-  padding: 0.25em;
-  margin: 0;
-  border-radius: 0;
-}
-
-.button-header {
-  border: none;
-  color: blue;
   background: none;
-  cursor: pointer;
-  outline: none;
+  border: none;
+}
+header {
+  button {
+    color: #fff;
+  }
+
+  .nav-bars {
+    font-size: 24px;
+  }
+
+  .header-left {
+    margin-left: 1em;
+    flex-grow: 0;
+  }
+  .header-center {
+    font-size: 24px;
+    text-align: center;
+    font-family: "Bree Serif", Bree, Serif, serif;
+    flex-grow: 1;
+  }
+  .header-right {
+    font-size: 16px;
+    margin-right: 1em;
+    flex-grow: 0;
+  }
 }
 
 </style>

@@ -10,12 +10,17 @@
     <div class="comments-container">
       <textarea v-model="form_data.comments" placeholder="Comment" class="list-comment"></textarea>
     </div>
-    <button
-      v-if="!finished && user_logged_in && approved"
-      @click="saveDay()"
-      class="but-save">
-      SAVE
-    </button>
+    <div class="centered">
+      <button
+        v-if="user_logged_in"
+        :disabled="finished"
+        @click="approveDay()"
+        class="action"
+        type="button" name="button"
+      >
+      APPROVE<span v-show="finished">D <font-awesome-icon icon="check-circle" /></span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -58,7 +63,8 @@ export default {
     }
   },
   methods: {
-    saveDay: function() {
+    approveDay: function() {
+      if (this.finished) return false;
       let post_data = this.form_data
       post_data.approved = true
       this.$store.dispatch('SAVE_SCHOOLDAY', {

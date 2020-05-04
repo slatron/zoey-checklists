@@ -3,6 +3,24 @@
   position: relative;
 }
 
+header {
+  height: 30px;
+  border-bottom: 1px solid black;
+  background: $color-blue;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 50;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  color: $color-white;
+  font-weight: bold;
+}
+
 .drawer-open > nav#drawer {
   left: 0;
 }
@@ -36,8 +54,19 @@
 }
 
 main {
+  background: #F7F7F7;
   height: 100%;
-  padding-top: 41px;
+  padding-top: 61px;
+}
+.content-spacer {
+  background: $color-white;
+  padding: $base-unit;
+
+  @media (min-width: 500px) {
+    border: 1px solid #E6E6E6;
+    margin: $base-unit*2;
+    padding: $base-unit*2;
+  }
 }
 
 .default-content {

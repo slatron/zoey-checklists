@@ -15,7 +15,9 @@
     <LoginForm></LoginForm>
     <ErrorMessage></ErrorMessage>
     <main class="default-content">
-      <router-view />
+      <div class="content-spacer">
+        <router-view />
+      </div>
     </main>
   </div>
 </template>

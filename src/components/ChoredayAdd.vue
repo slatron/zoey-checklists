@@ -15,10 +15,10 @@
         v-if="user_logged_in"
         :disabled="finished"
         @click="approveDay()"
-        class="but-approve"
+        class="action"
         type="button" name="button"
       >
-        Approve<span v-show="finished">d</span>
+        APPROVE<span v-show="finished">D <font-awesome-icon icon="check-circle" /></span>
       </button>
     </div>
   </div>
