@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="header-center">
-      <h2>Zoey's Chore List</h2>
+      <h2>{{page_name}}</h2>
     </div>
     <div class="header-right">
       <button
@@ -37,6 +37,20 @@ export default {
     },
     user_logged_in () {
       return this.$store.state.auth.user_logged_in
+    },
+    page_name () {
+      let title = ''
+      switch (this.$route.name) {
+        case 'chores':
+          title = 'Zoey\s Chore List'
+          break
+        case 'homeschool':
+          title = 'Zoey\s Homework List'
+          break
+        default:
+          title = 'Slater Family Lists'
+      }
+      return title
     }
   },
   methods: {
@@ -58,30 +72,4 @@ button {
   background: none;
   border: none;
 }
-header {
-  button {
-    color: #fff;
-  }
-
-  .nav-bars {
-    font-size: 24px;
-  }
-
-  .header-left {
-    margin-left: 1em;
-    flex-grow: 0;
-  }
-  .header-center {
-    font-size: 24px;
-    text-align: center;
-    font-family: "Bree Serif", Bree, Serif, serif;
-    flex-grow: 1;
-  }
-  .header-right {
-    font-size: 16px;
-    margin-right: 1em;
-    flex-grow: 0;
-  }
-}
-
 </style>

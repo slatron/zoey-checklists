@@ -5,7 +5,6 @@
 
 header {
   height: 30px;
-  border-bottom: 1px solid black;
   background: $color-blue;
   position: fixed;
   width: 100%;
@@ -19,10 +18,39 @@ header {
   flex-wrap: wrap;
   color: $color-white;
   font-weight: bold;
+
+  button {
+    color: $color-white;
+  }
+
+  .nav-bars {
+    font-size: 24px;
+  }
+
+  .header-left {
+    margin-left: 1em;
+    flex-grow: 0;
+  }
+  .header-center {
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Bree Serif', serif;
+    flex-grow: 1;
+
+    h2 {
+      font-weight: 500;
+    }
+  }
+  .header-right {
+    font-size: 16px;
+    margin-right: $base-unit;
+    flex-grow: 0;
+  }
+
 }
 
 .drawer-open > nav#drawer {
-  left: 0;
+  top: 60px;
 }
 
 .window-shade {
@@ -56,7 +84,7 @@ header {
 main {
   background: #F7F7F7;
   height: 100%;
-  padding-top: 61px;
+  padding-top: 60px;
 }
 .content-spacer {
   background: $color-white;

@@ -2,7 +2,8 @@ export default {
   state: {
     drawer_open: false,
     error_msg: '',
-    open_login_form: false
+    open_login_form: false,
+    shade_on: false
   },
 
   mutations: {
@@ -16,6 +17,11 @@ export default {
       state.drawer_open = options.hasOwnProperty('force')
         ? options.force
         : !state.drawer_open
+    },
+    TOGGLE_SHADE (state, options = {}) {
+      state.shade_on = options.hasOwnProperty('force')
+        ? options.force
+        : !state.shade_on
     },
     SET_ERROR_MESSAGE (state, msg) {
       if (typeof(msg) === 'string') {

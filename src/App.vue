@@ -7,9 +7,9 @@
   >
     <NavDrawer></NavDrawer>
     <div
-      v-if="drawer_open"
-      class="window-shade z-40 md:hidden"
-      @click="toggleDrawer()"
+      v-if="shade"
+      class="window-shade"
+      @click="toggleShade()"
     />
     <SiteHeader></SiteHeader>
     <LoginForm></LoginForm>
@@ -45,6 +45,9 @@ export default {
   computed: {
     drawer_open () {
       return this.$store.state.layout.drawer_open
+    },
+    shade () {
+      return this.$store.state.layout.shade_on
     }
   },
   created: function() {
@@ -60,6 +63,9 @@ export default {
   methods: {
     toggleDrawer: function () {
       this.$store.commit('TOGGLE_DRAWER')
+    },
+    toggleShade: function () {
+      this.$store.commit('TOGGLE_SHADE')
     }
   },
   watch: {
@@ -73,10 +79,12 @@ export default {
 
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 @import './assets/css/settings.scss';
 @import './assets/css/reset.scss';
 @import './assets/css/base.scss';
 @import './assets/css/layout.scss';
 @import './assets/css/mods/checklist-item.scss';
+@import './assets/css/mods/nav-drawer.scss';
 @import './assets/css/state.scss';
 </style>

@@ -28,8 +28,10 @@ button.action {
   color: $color-white;
   border-radius: $base-unit/2;
   padding: $base-unit/2 $base-unit;
+  cursor: pointer;
 
   &:disabled {
-    background-color: $color-blue-lt;
+    background-color: $color-blue-med;
+    cursor: auto;
   }
 }
