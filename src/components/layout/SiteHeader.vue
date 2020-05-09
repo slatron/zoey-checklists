@@ -54,8 +54,8 @@ export default {
     }
   },
   methods: {
-    toggleLogin: function (force) {
-      this.$store.commit('TOGGLE_LOGIN', {'force': force})
+    toggleLogin: function () {
+      this.$store.commit('TOGGLE_LOGIN')
     },
     toggleDrawer: function () {
       this.$store.commit('TOGGLE_DRAWER')

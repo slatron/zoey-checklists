@@ -1,27 +1,28 @@
-<template lang="html">
-  <div class="login-form-container" v-if="open_login_form">
+  <template lang="html">
+  <div class="shade-form login-form" v-if="open_login_form">
     <form @submit.prevent>
       <fieldset>
-        <label for="uname-input">Username:</label>
         <input
           id="uname-input"
           v-model="username"
           type="text"
+          placeholder="Username"
         >
       </fieldset>
       <fieldset>
-        <label for="pass-input">Password:</label>
         <input
           id="pass-input"
           v-model="password"
           type="password"
+          placeholder="Password"
         >
       </fieldset>
       <div class="button-row-submit">
         <button
+          class="action"
           @click="doLogin()"
         >
-          login
+          LOGIN
         </button>
       </div>
     </form>
@@ -63,22 +64,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.login-form-container {
-  padding: 0.25em;
-  border-left: 1px solid #000;
-  border-bottom: 1px solid #000;
-  border-radius: 0 0 0 1rem;
-  width: 250px;
-  background: #ccc;
-  position: fixed;
-  top: 30px;
-  right: 0;
-  z-index: 100;
+.login-form {
+  text-align: center;
 }
 
-.button-row-submit {
-  text-align: right;
-  padding: 0.5em;
+input {
+  width: 70%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  margin-bottom: 1rem;
+  font-size: 12px;
 }
 
+button {
+  font-size: 14px;
+  font-weight: bold;
+}
 </style>

@@ -9,6 +9,7 @@ export default {
   mutations: {
     TOGGLE_LOGIN (state, options = {}) {
       const force_sent = (options.hasOwnProperty('force') && options.force !== undefined)
+      this.commit('TOGGLE_SHADE', {'force': true})
       state.open_login_form = force_sent
         ? options.force
         : !state.open_login_form
