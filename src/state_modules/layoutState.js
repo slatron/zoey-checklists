@@ -23,11 +23,15 @@ export default {
       state.shade_on = options.hasOwnProperty('force')
         ? options.force
         : !state.shade_on
+      this.commit('CLOSE_FORMS')
     },
     SET_ERROR_MESSAGE (state, msg) {
       if (typeof(msg) === 'string') {
         state.error_msg = msg
       }
+    },
+    CLOSE_FORMS (state) {
+      state.open_login_form = false
     }
   }
 }

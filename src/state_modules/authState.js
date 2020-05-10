@@ -24,6 +24,7 @@ export default {
       Auth.signInWithEmailAndPassword(options.username, options.password)
         .then(function(response) {
           state.commit('TOGGLE_LOGIN', {'force': false})
+          state.commit('TOGGLE_SHADE', {'force': false})
           state.commit('SET_LOGIN_USERNAME', '')
         })
         .catch(function(error) {
