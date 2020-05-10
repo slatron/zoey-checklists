@@ -71,8 +71,8 @@ header {
 .shade-form {
   position: absolute;
   top: 110px;
-  left: 30%;
-  right: 30%;
+  left: 10%;
+  right: 10%;
 
   padding: 2em 1em;
   border-left: 1px solid $color-blue;
@@ -83,7 +83,13 @@ header {
   background: #fff;
   position: fixed;
   z-index: 100;
+
+  @media (min-width: 500px) {
+    left: 30%;
+    right: 30%;
+  }
 }
+
 
 #drawer,
 .window-shade {
