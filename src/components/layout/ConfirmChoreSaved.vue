@@ -2,7 +2,7 @@
   <div class="shade-form" v-if="open_confirm_chore_saved" @click="closeForm()">
     <form @submit.prevent>
       <div class="button-row-submit color-blue">
-        <font-awesome-icon icon="poo" />
+        <font-awesome-icon icon="grin-beam" />
         <p>Approved!</p>
       </div>
     </form>

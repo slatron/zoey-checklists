@@ -14,6 +14,7 @@ import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faGrinBeam } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faBars)
@@ -23,6 +24,7 @@ library.add(faLockOpen)
 library.add(faPoo)
 library.add(faCheckSquare)
 library.add(faCheckCircle)
+library.add(faGrinBeam)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
