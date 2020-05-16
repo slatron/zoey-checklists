@@ -23,6 +23,9 @@
 .hand {
   cursor: pointer;
 }
+.color-blue {
+  color: $color-blue;
+}
 button.action {
   background-color: $color-blue;
   color: $color-white;

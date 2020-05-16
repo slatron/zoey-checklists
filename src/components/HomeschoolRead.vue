@@ -1,8 +1,8 @@
 <template>
   <div class="homeschool-read">
     <section
-      v-for="(day, idx) in days"
-      :key="idx"
+      v-for="day in days"
+      :key="day.date.nanoseconds"
     >
       <p><b>Date</b>: {{ day.date | toDate }}<p>
       <p><b>Reading</b>: {{day.reading}}</p>

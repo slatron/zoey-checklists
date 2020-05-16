@@ -1,5 +1,7 @@
 <template>
   <div class="choreday-area checklist-items">
+    <ConfirmNotAllFinished></ConfirmNotAllFinished>
+    <ConfirmChoreSaved></ConfirmChoreSaved>
     <ChecklistItem
       v-for="label in labels"
       :key="label.key"
@@ -26,11 +28,15 @@
 
 <script>
 import ChecklistItem from '@/components/ChecklistItem'
+import ConfirmNotAllFinished from '@/components/layout/ConfirmNotAllFinished'
+import ConfirmChoreSaved from '@/components/layout/ConfirmChoreSaved'
 
 export default {
   name: 'ChoredayAdd',
   components: {
-    ChecklistItem
+    ChecklistItem,
+    ConfirmNotAllFinished,
+    ConfirmChoreSaved
   },
   created: function() {
     this.$store.dispatch('GET_LABELS', {})
@@ -51,12 +57,18 @@ export default {
   },
   methods: {
     approveDay: function() {
-      if (this.finished) return false;
-      let post_data = this.form_data
-      post_data.approved = true
-      this.$store.dispatch('SAVE_CHOREDAY', {
-        'post_data': post_data
-      })
+      // If day already approved, skip
+      if (this.finished) return false
+
+      const allFinished = (complete, label) => this.form_data[label.key]
+      const all_complete = this.labels.reduce(allFinished)
+
+      if (!all_complete) {
+        this.$store.commit('CONFIRM_NOT_ALL_FINISHED')
+      } else {
+        this.$store.dispatch('SAVE_CHOREDAY')
+        this.$store.commit('CONFIRM_CHORE_SAVED')
+      }
     }
   }
 }

@@ -29,9 +29,12 @@ export default {
 
   actions: {
     SAVE_CHOREDAY (state, options) {
-      options.post_data.date = Timestamp.fromDate(new Date())
-      db.collection('choredays').add(options.post_data)
+      const post_data = state.state.form_data
+      post_data.date = Timestamp.fromDate(new Date())
+      post_data.approved = true
+      db.collection('choredays').add(post_data)
         .then(function(response) {
+          state.commit('SET_CHOREDAY_FINISHED', true)
           state.commit('SET_CHOREDAY_FINISHED', true)
         })
     },

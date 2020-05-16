@@ -10,6 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { faLockOpen } from '@fortawesome/free-solid-svg-icons'
+import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
@@ -19,6 +20,7 @@ library.add(faBars)
 library.add(faSquare)
 library.add(faLock)
 library.add(faLockOpen)
+library.add(faPoo)
 library.add(faCheckSquare)
 library.add(faCheckCircle)
 
