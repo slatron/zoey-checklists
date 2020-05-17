@@ -4,7 +4,12 @@
     class="centered-vert"
     :for="'cb-' + formKey"
   >
-    <input type="checkbox" :name="'cb-' + formKey" :id="'cb-' + formKey" v-model="formData[formKey]">
+    <input
+      type="checkbox"
+      :disabled="formFinished"
+      :name="'cb-' + formKey"
+      :id="'cb-' + formKey"
+      v-model="formData[formKey]">
     <font-awesome-icon
       v-show="!formData[formKey]"
       class="empty-square"
@@ -22,7 +27,8 @@ export default {
   props: {
     formData: { 'type': Object, 'default': {} },
     formKey: { 'type': String, 'default': '' },
-    formTitle: { 'type': String, 'default': ''}
+    formTitle: { 'type': String, 'default': '' },
+    formFinished: {'type': Boolean, default: false }
   }
 }
 </script>

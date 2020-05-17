@@ -1,5 +1,5 @@
 <template>
-  <div class="bonusday-area">
+  <div class="bonusday-area content-spacer">
     <h2>WEEKLY BONUS</h2>
     <form @submit.prevent>
 

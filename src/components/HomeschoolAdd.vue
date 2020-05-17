@@ -1,5 +1,5 @@
 <template>
-  <div class="homeschool-area checklist-items">
+  <div class="homeschool-area checklist-items content-spacer">
     <ChecklistItem
       v-for="label in labels"
       :key="label.key"

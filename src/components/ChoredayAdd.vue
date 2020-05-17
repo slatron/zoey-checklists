@@ -1,5 +1,8 @@
 <template>
-  <div class="choreday-area checklist-items">
+  <div
+   class="choreday-area checklist-items content-spacer"
+   :class="{'bg-color-green': finished}"
+  >
     <ConfirmNotAllFinished></ConfirmNotAllFinished>
     <ConfirmChoreSaved></ConfirmChoreSaved>
     <ChecklistItem
@@ -8,6 +11,7 @@
       :form-data="form_data"
       :form-key="label.key"
       :form-title="label.name"
+      :form-finished="finished"
     ></ChecklistItem>
     <div class="comments-container">
       <textarea v-model="form_data.comments" placeholder="Comments" class="list-comment"></textarea>
@@ -40,6 +44,7 @@ export default {
   },
   created: function() {
     this.$store.dispatch('GET_LABELS', {})
+    this.$store.dispatch('INIT_DAY_FINISHED', {})
   },
   computed: {
     labels () {
