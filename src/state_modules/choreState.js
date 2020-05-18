@@ -44,6 +44,7 @@ export default {
       const post_data = state.state.form_data
       post_data.date = Timestamp.fromDate(new Date())
       post_data.approved = true
+      post_data.person = state.state.current_person
       db.collection('choredays').add(post_data)
         .then(function(response) {
           state.commit('SET_CHOREDAY_FINISHED', true)
