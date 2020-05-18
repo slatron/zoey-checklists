@@ -3,6 +3,8 @@ import { tools } from '@/utils/MStools'
 
 export default {
   state: {
+    chore_people: [],
+    current_person: null,
     day_finished: false,
     labels: [],
     form_data: {
@@ -28,6 +30,12 @@ export default {
     },
     POPULATE_EXISTING_CHORES (state, chore_data) {
       state.form_data = {...chore_data}
+    },
+    SELECT_CHORE_PERSON (state, person) {
+      state.current_person = person
+    },
+    SET_CHORE_PEOPLE (state, people) {
+      state.chore_people = people
     }
   },
 
@@ -41,13 +49,28 @@ export default {
           state.commit('SET_CHOREDAY_FINISHED', true)
         })
     },
-    // Called when chores page is initialized
-    // - Gets chores data from db to populate list
+
+    GET_CHORE_PEOPLE (state) {
+      db.collection('kids').get()
+        .then(function(kids) {
+          const chore_people = kids.docs.map(person => person.data())
+          state.commit('SET_CHORE_PEOPLE', chore_people)
+        })
+    },
+
+    // OLD WAY WITH ONE LIST:
+    // db.collection('chores').get()
+    //   .then(function(doc) {
+    //     if (doc) {
+    //       const chorelist = doc.docs[0].data().chorelist
+
     GET_LABELS (state, options) {
-      db.collection('chores').get()
+      options = options || {}
+      const person = options.child || state.state.current_person || 'ZOEY'
+      db.collection('chores').doc(person).get()
         .then(function(doc) {
           if (doc) {
-            const chorelist = doc.docs[0].data().chorelist
+            const chorelist = doc.data().chorelist
             state.commit('SET_FORM', chorelist)
             state.commit('SET_LABELS', chorelist)
           } else {
@@ -58,12 +81,14 @@ export default {
             console.log("Error getting document:", error)
         })
     },
-    INIT_DAY_FINISHED (state, options) {
+
+    GET_EXISTING_CHOREDAY (state) {
       let all_chores = [];
       db.collection('choredays').get()
         .then(function(choredays) {
           if (choredays) {
             all_chores = choredays.docs
+            // TODO: CLEAN THIS LOGIC UP
             const dateEntries = choredays.docs.map(day => {
               return {
                 date: day.data().date.toDate(),

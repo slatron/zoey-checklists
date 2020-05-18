@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomeschoolAddView from './views/HomeschoolAddView.vue'
+import SelectPersonView from './views/SelectPersonView.vue'
 
 Vue.use(Router)
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'homeschool',
-      component: HomeschoolAddView
+      name: 'default-page',
+      component: SelectPersonView
     },
     {
       path: '/homeschool/read',
@@ -25,6 +25,11 @@ export default new Router({
       path: '/bonus',
       name: 'bonus',
       component: () => import(/* webpackChunkName: "bonus" */ './views/BonusAddView.vue')
+    },
+    {
+      path: '/homeschool',
+      name: 'homeschool',
+      component: () => import(/* webpackChunkName: "bonus" */ './views/HomeschoolAddView.vue')
     },
     {
       path: '/rules',

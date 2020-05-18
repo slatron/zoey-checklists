@@ -11,6 +11,8 @@
   background-color: $color-white;
   color: $color-blue;
   height: 30px;
+  cursor: pointer;
+
   &.done {
     background-color: $color-blue;
     color: $color-white;

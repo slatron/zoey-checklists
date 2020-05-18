@@ -2,12 +2,12 @@
   <nav id="drawer">
     <ul>
       <li>
-        <router-link to="/chores">
+        <router-link to="/">
           Chore List
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/homeschool">
           Home School
         </router-link>
       </li>

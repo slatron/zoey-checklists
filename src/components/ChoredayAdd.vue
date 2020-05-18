@@ -42,9 +42,9 @@ export default {
     ConfirmNotAllFinished,
     ConfirmChoreSaved
   },
-  created: function() {
-    this.$store.dispatch('GET_LABELS', {})
-    this.$store.dispatch('INIT_DAY_FINISHED', {})
+  mounted: function() {
+    this.$store.dispatch('GET_LABELS')
+    this.$store.dispatch('GET_EXISTING_CHOREDAY')
   },
   computed: {
     labels () {
