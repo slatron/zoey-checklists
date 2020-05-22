@@ -12,6 +12,11 @@ export default new Router({
       component: SelectPersonView
     },
     {
+      path: '/select-chorelist',
+      name: 'select-chorelist',
+      component: SelectPersonView
+    },
+    {
       path: '/homeschool/read',
       name: 'read-homeschool',
       component: () => import(/* webpackChunkName: "read-homeschool" */ './views/HomeschoolReadView.vue')

@@ -65,8 +65,13 @@ export default {
       // If day already approved, skip
       if (this.finished) return false
 
-      const allFinished = (complete, label) => this.form_data[label.key]
-      const all_complete = this.labels.reduce(allFinished)
+      let unfinished_chores = 0
+      for (const i in this.form_data) {
+        if (this.form_data[i] === false) {
+          unfinished_chores++
+        }
+      }
+      const all_complete = unfinished_chores === 0
 
       if (!all_complete) {
         this.$store.commit('CONFIRM_NOT_ALL_FINISHED')

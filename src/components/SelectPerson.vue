@@ -4,7 +4,7 @@
     <label
       v-for="chore_person in chore_people"
       :key="chore_person.key"
-      @click="setPerson(chore_person.key)"
+      @click="setPerson(chore_person)"
       class="centered-vert">
       <div class="checklist-text">{{chore_person.name}}</div>
     </label>
@@ -25,8 +25,8 @@ export default {
     }
   },
   methods: {
-    setPerson: function(key) {
-      this.$store.commit('SELECT_CHORE_PERSON', key)
+    setPerson: function(chore_person) {
+      this.$store.commit('SELECT_CHORE_PERSON', chore_person)
       this.$router.push('chores')
     }
   }
