@@ -17,7 +17,9 @@ export default {
 
   mutations: {
     SET_CHOREDAY_FINISHED (state, finished) {
-      state.day_finished = finished
+      state.day_finished       = finished
+      state.form_data.approved = true
+      state.commit('STORE_CURRENT_USER_STATE', {...state.form_data})
     },
     SET_LABELS (state, chorelist) {
       state.labels = chorelist
@@ -32,14 +34,14 @@ export default {
     POPULATE_EXISTING_CHORES (state, chore_data) {
       state.form_data = {...chore_data}
     },
-    SELECT_CHORE_PERSON (state, chore_person) {
-      // Store current user list state
+    STORE_CURRENT_USER_STATE (state, current_state) {
       if (state.current_person.key) {
-        state.list_cache[state.current_person.key] = {...state.form_data}
+        state.list_cache[state.current_person.key] = current_state
       }
-      state.current_person = chore_person
-      if (state.list_cache[chore_person.key]) {
-        state.form_data = state.list_cache[chore_person.key]
+    },
+    SET_CURRENT_USER_STATE (state, person_key) {
+      if (state.list_cache[person_key]) {
+        state.form_data = state.list_cache[person_key]
       } else {
         state.form_data = {
           comments: '',
@@ -47,6 +49,11 @@ export default {
           approved: false
         }
       }
+    },
+    SELECT_CHORE_PERSON (state, chore_person) {
+      this.commit('STORE_CURRENT_USER_STATE', {...state.form_data})
+      state.current_person = chore_person
+      this.commit('SET_CURRENT_USER_STATE', chore_person.key)
     },
     SET_CHORE_PEOPLE (state, people) {
       state.chore_people = people
@@ -109,6 +116,7 @@ export default {
             const today = new Date()
             const today_entry = dateEntries.filter(entry => tools().isToday(entry.date, today))
             const today_entry_person = today_entry.filter(entry => entry.person === state.state.current_person.key)
+
 
             state.commit('SET_CHOREDAY_FINISHED', today_entry_person.length > 0)
             if (today_entry_person.length > 0) {
