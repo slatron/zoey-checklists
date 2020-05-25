@@ -6,11 +6,7 @@ export default {
     chore_people: [],
     current_person: {},
     list_items: {},
-    form_data: {
-      comments: '',
-      date: Timestamp.fromDate(new Date()),
-      approved: false
-    }
+    form_data: {}
   },
 
   mutations: {
@@ -26,17 +22,7 @@ export default {
       }
     },
     SET_CURRENT_USER_STATE (state, person_key) {
-      if (state.list_cache[person_key]) {
-        state.form_data = state.list_cache[person_key]
-      } else {
-        state.form_data = {
-          comments: '',
-          date: Timestamp.fromDate(new Date()),
-          approved: false,
-          person: state.current_person.key,
-          ...state.list_items[state.current_person.key]
-        }
-      }
+      state.form_data = state.list_cache[person_key]
     },
     SELECT_CHORE_PERSON (state, chore_person) {
       this.commit('STORE_CURRENT_USER_STATE', {...state.form_data})
@@ -80,17 +66,32 @@ export default {
         })
     },
 
+
+    // TODO: MOVE INIT LIST LOGIC TO MODULE
     INIT_LIST_CACHE (state) {
       let recent_lists = []
       let todays_lists = []
-      let found_people = []
       const list_cache = {}
+
+      function createListView(item_state_map, existing, id) {
+        debugger
+        existing = existing || {}
+        return {
+          ...item_state_map,
+          approved: existing.approved || false,
+          comments: existing.comments || '',
+          person: existing.person || 'ZOEY',
+          date: existing.date || Timestamp.fromDate(new Date()),
+          id: id
+        }
+      }
 
       db.collection('choredays')
         .orderBy('date', 'desc')
         .limit(state.state.chore_people.length)
         .get()
         .then(function(choredays) {
+
           // Convert firebase day to view model properties
           recent_lists = choredays.docs.map(day => {
             let chore_list = state.state.list_items[day.data().person]
@@ -99,14 +100,7 @@ export default {
               chore_state_map[chore.key] = day.data()[chore.key] || false
             })
 
-            return {
-              ...chore_state_map,
-              approved: day.data().approved || false,
-              comments: day.data().comments || '',
-              person: day.data().person || 'ZOEY',
-              date: day.data().date || Timestamp.fromDate(new Date()),
-              id: day.id
-            }
+            return createListView(chore_state_map, day.data(), day.id)
           })
 
           // filter out days before today
@@ -115,12 +109,21 @@ export default {
             return day.date.toDate().toDateString() === today_string
           })
 
-          // set current list cache, ensure unique entries per person
+          // Set list_cache to todays lists, key by person
           todays_lists.forEach(day => {
-            if (found_people.indexOf(day.person) === -1) {
-              list_cache[day.person] = day
+            list_cache[day.person] = day
+          })
+
+          // add blank entries for people with no started list
+          state.state.chore_people.forEach(person => {
+            if (!list_cache.hasOwnProperty(person.key)) {
+              let person_chore_list = state.state.list_items[person.key]
+              let blank_chore_state_map = {}
+              person_chore_list.forEach(chore => {
+                blank_chore_state_map[chore.key] = false
+              })
+              list_cache[person.key] =  createListView(blank_chore_state_map, {'person': person.key})
             }
-            found_people.push(day.person)
           })
           state.commit('SET_LIST_CACHE', list_cache)
         })

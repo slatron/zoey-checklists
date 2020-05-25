@@ -50,7 +50,7 @@ export default {
   computed: {
     items () {
       const person_key = this.$store.state.chores.current_person.key
-      return this.$store.state.chores.list_items[person_key].chorelist
+      return this.$store.state.chores.list_items[person_key]
     },
     form_data () {
       return this.$store.state.chores.form_data
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     approveDay: function() {
-      // If day already approved, skip
+      // If day already approved, exit approval process
       if (this.finished) return false
 
       let unfinished_chores = 0

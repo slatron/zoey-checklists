@@ -5,6 +5,7 @@
       v-for="chore_person in chore_people"
       :key="chore_person.key"
       @click="setPerson(chore_person)"
+      :class="{'finished': list_cache[chore_person.key].approved}"
       class="centered-vert">
       <div class="checklist-text">{{chore_person.name}}</div>
     </label>
@@ -17,6 +18,9 @@ export default {
   computed: {
     chore_people () {
       return this.$store.state.chores.chore_people
+    },
+    list_cache () {
+      return this.$store.state.chores.list_cache
     }
   },
   methods: {
@@ -30,4 +34,5 @@ export default {
 
 <style scoped lang="scss">
   h2 { margin-bottom: 1em; }
+  .finished {background: #c1f3b2}
 </style>
