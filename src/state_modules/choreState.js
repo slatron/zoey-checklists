@@ -1,13 +1,11 @@
 import { db, Timestamp } from '@/db'
-import { tools } from '@/utils/MStools'
 
 export default {
   state: {
     list_cache: {},
     chore_people: [],
     current_person: {},
-    day_finished: false,
-    labels: [],
+    list_items: {},
     form_data: {
       comments: '',
       date: Timestamp.fromDate(new Date()),
@@ -16,20 +14,8 @@ export default {
   },
 
   mutations: {
-    SET_CHOREDAY_FINISHED (state, finished) {
-      state.day_finished       = finished
-      state.form_data.approved = true
-      state.commit('STORE_CURRENT_USER_STATE', {...state.form_data})
-    },
-    SET_LABELS (state, chorelist) {
-      state.labels = chorelist
-    },
-    SET_FORM (state, chorelist) {
-      let db_chores = {}
-      chorelist.forEach(chore => {
-        db_chores[chore.key] = state.form_data[chore.key] || false
-      })
-      state.form_data = Object.assign({}, state.form_data, db_chores)
+    SET_ITEMS (state, list_items_by_person) {
+      state.list_items = list_items_by_person
     },
     POPULATE_EXISTING_CHORES (state, chore_data) {
       state.form_data = {...chore_data}
@@ -46,7 +32,9 @@ export default {
         state.form_data = {
           comments: '',
           date: Timestamp.fromDate(new Date()),
-          approved: false
+          approved: false,
+          person: state.current_person.key,
+          ...state.list_items[state.current_person.key]
         }
       }
     },
@@ -57,6 +45,9 @@ export default {
     },
     SET_CHORE_PEOPLE (state, people) {
       state.chore_people = people
+    },
+    SET_LIST_CACHE (state, list_map) {
+      state.list_cache = {...list_map}
     }
   },
 
@@ -67,66 +58,71 @@ export default {
       post_data.approved = true
       post_data.person = state.state.current_person.key
       db.collection('choredays').add(post_data)
-        .then(function(response) {
-          state.commit('SET_CHOREDAY_FINISHED', true)
-        })
     },
 
-    GET_CHORE_PEOPLE (state) {
-      db.collection('kids').get()
-        .then(function(kids) {
-          const chore_people = kids.docs.map(person => person.data())
+    INIT_CHORE_PEOPLE (state) {
+      return db.collection('kids').get()
+        .then(function(people) {
+          const chore_people = people.docs.map(person => person.data())
           state.commit('SET_CHORE_PEOPLE', chore_people)
         })
     },
 
-    GET_LABELS (state, options) {
-      options = options || {}
-      const person = options.child || state.state.current_person.key || 'ZOEY'
-      db.collection('chores').doc(person).get()
-        .then(function(doc) {
-          if (doc) {
-            const chorelist = doc.data().chorelist
-            state.commit('SET_FORM', chorelist)
-            state.commit('SET_LABELS', chorelist)
-          } else {
-              console.log("No such document!")
-          }
-        })
-        .catch(function(error) {
-            console.log("Error getting document:", error)
+
+    INIT_ITEMS (state) {
+      const list_items_by_person = {}
+      db.collection('chores').get()
+        .then(function(chores) {
+          chores.docs.forEach(items => {
+            list_items_by_person[items.id] = items.data().chorelist
+          })
+          state.commit('SET_ITEMS', list_items_by_person)
         })
     },
 
-    GET_EXISTING_CHOREDAY (state) {
-      let all_chores = [];
-      db.collection('choredays').get()
+    INIT_LIST_CACHE (state) {
+      let recent_lists = []
+      let todays_lists = []
+      let found_people = []
+      const list_cache = {}
+
+      db.collection('choredays')
+        .orderBy('date', 'desc')
+        .limit(state.state.chore_people.length)
+        .get()
         .then(function(choredays) {
-          if (choredays) {
-            all_chores = choredays.docs
-            // TODO: CLEAN THIS LOGIC UP
-            const dateEntries = choredays.docs.map(day => {
-              return {
-                person: day.data().person,
-                date: day.data().date.toDate(),
-                id: day.id
-              }
+          // Convert firebase day to view model properties
+          recent_lists = choredays.docs.map(day => {
+            let chore_list = state.state.list_items[day.data().person]
+            let chore_state_map = {}
+            chore_list.forEach(chore => {
+              chore_state_map[chore.key] = day.data()[chore.key] || false
             })
 
-            const today = new Date()
-            const today_entry = dateEntries.filter(entry => tools().isToday(entry.date, today))
-            const today_entry_person = today_entry.filter(entry => entry.person === state.state.current_person.key)
-
-
-            state.commit('SET_CHOREDAY_FINISHED', today_entry_person.length > 0)
-            if (today_entry_person.length > 0) {
-              const chore_data = all_chores.find(day => day.id === today_entry_person[0].id).data()
-              state.commit('POPULATE_EXISTING_CHORES', chore_data)
+            return {
+              ...chore_state_map,
+              approved: day.data().approved || false,
+              comments: day.data().comments || '',
+              person: day.data().person || 'ZOEY',
+              date: day.data().date || Timestamp.fromDate(new Date()),
+              id: day.id
             }
-          }
-        })
-        .catch(function(error) {
-            console.log("Error getting document:", error)
+          })
+
+          // filter out days before today
+          const today_string = new Date().toDateString()
+          todays_lists = recent_lists.filter(day => {
+            return day.date.toDate().toDateString() === today_string
+          })
+
+          // set current list cache, ensure unique entries per person
+          todays_lists.forEach(day => {
+            if (found_people.indexOf(day.person) === -1) {
+              list_cache[day.person] = day
+            }
+            found_people.push(day.person)
+          })
+          state.commit('SET_LIST_CACHE', list_cache)
         })
     }
   }

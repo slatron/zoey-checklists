@@ -1,7 +1,7 @@
 <template>
   <div class="homeschool-area checklist-items content-spacer">
     <ChecklistItem
-      v-for="label in labels"
+      v-for="label in items"
       :key="label.key"
       :form-data="form_data"
       :form-key="label.key"
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      labels: [
+      items: [
         {key: 'math', name: 'Math'},
         {key: 'science', name: 'Science'},
         {key: 'reading', name: 'Reading'},

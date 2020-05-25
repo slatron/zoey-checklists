@@ -14,11 +14,6 @@
 <script>
 export default {
   name: 'SelectPerson',
-
-  created () {
-    this.$store.dispatch('GET_CHORE_PEOPLE')
-  },
-
   computed: {
     chore_people () {
       return this.$store.state.chores.chore_people

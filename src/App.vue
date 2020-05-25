@@ -54,9 +54,16 @@ export default {
       const logged_in = user ? true : false
       AppLayout.$store.commit('SET_LOGIN_STATUS', {'status': logged_in})
     });
-  },
-  mounted: function() {
-    this.ready = true
+    // Inint Cascade
+    // TODO: Handle these better w/ async functions
+    AppLayout.$store.dispatch('INIT_CHORE_PEOPLE')
+      .then(() => {
+        AppLayout.$store.dispatch('INIT_ITEMS')
+          .then(() => {
+            AppLayout.$store.dispatch('INIT_LIST_CACHE')
+              .then(() => AppLayout.ready = true)
+          })
+      })
   },
   methods: {
     toggleDrawer: function () {

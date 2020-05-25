@@ -6,7 +6,7 @@
     <ConfirmNotAllFinished></ConfirmNotAllFinished>
     <ConfirmChoreSaved></ConfirmChoreSaved>
     <ChecklistItem
-      v-for="label in labels"
+      v-for="label in items"
       :key="label.key"
       :form-data="form_data"
       :form-key="label.key"
@@ -42,13 +42,15 @@ export default {
     ConfirmNotAllFinished,
     ConfirmChoreSaved
   },
-  mounted: function() {
-    this.$store.dispatch('GET_LABELS')
-    this.$store.dispatch('GET_EXISTING_CHOREDAY')
+  created: function() {
+    const person_key = this.$store.state.chores.current_person.key
+    const chore_data = this.$store.state.chores.list_cache[person_key]
+    this.$store.commit('POPULATE_EXISTING_CHORES', chore_data)
   },
   computed: {
-    labels () {
-      return this.$store.state.chores.labels
+    items () {
+      const person_key = this.$store.state.chores.current_person.key
+      return this.$store.state.chores.list_items[person_key].chorelist
     },
     form_data () {
       return this.$store.state.chores.form_data
@@ -57,7 +59,7 @@ export default {
       return this.$store.state.auth.user_logged_in
     },
     finished () {
-      return this.$store.state.chores.day_finished
+      return this.$store.state.chores.form_data.approved
     }
   },
   methods: {
