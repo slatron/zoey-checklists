@@ -5,7 +5,7 @@
       v-for="chore_person in chore_people"
       :key="chore_person.key"
       @click="setPerson(chore_person)"
-      :class="{'finished': list_cache[chore_person.key].approved}"
+      :class="{'finished': chore_person.finished}"
       class="centered-vert">
       <div class="checklist-text">{{chore_person.name}}</div>
     </label>
@@ -17,10 +17,14 @@ export default {
   name: 'SelectPerson',
   computed: {
     chore_people () {
-      return this.$store.state.chores.chore_people
-    },
-    list_cache () {
-      return this.$store.state.chores.list_cache
+      const chore_people = this.$store.state.chores.chore_people
+      const list_cache   = this.$store.state.chores.list_cache
+      chore_people.forEach(person => {
+        if (list_cache[person.key]) {
+          person.finished = list_cache[person.key].approved
+        }
+      })
+      return chore_people
     }
   },
   methods: {

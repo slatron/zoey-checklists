@@ -74,7 +74,6 @@ export default {
       const list_cache = {}
 
       function createListView(item_state_map, existing, id) {
-        debugger
         existing = existing || {}
         return {
           ...item_state_map,
