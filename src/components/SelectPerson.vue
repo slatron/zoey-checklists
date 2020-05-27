@@ -8,6 +8,7 @@
       :class="{'finished': chore_person.finished}"
       class="centered-vert">
       <div class="checklist-text">{{chore_person.name}}</div>
+      <font-awesome-icon v-show="chore_person.finished" icon="chess-queen" />
     </label>
   </div>
 </template>
@@ -39,4 +40,5 @@ export default {
 <style scoped lang="scss">
   h2 { margin-bottom: 1em; }
   .finished {background: #c1f3b2}
+  .checklist-text { margin-right: 1em; }
 </style>

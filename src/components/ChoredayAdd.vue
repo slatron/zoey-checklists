@@ -8,6 +8,7 @@
     <ChecklistItem
       v-for="label in items"
       :key="label.key"
+      :label="label"
       :form-data="form_data"
       :form-key="label.key"
       :form-title="label.name"

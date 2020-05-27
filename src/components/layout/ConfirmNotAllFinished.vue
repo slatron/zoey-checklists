@@ -44,8 +44,7 @@ export default {
   methods: {
     saveChoreday: function() {
       this.$store.dispatch('SAVE_CHOREDAY')
-      // this.$store.commit('TOGGLE_SHADE', {force: false})
-      this.$store.commit('CONFIRM_CHORE_SAVED')
+      this.$store.commit('TOGGLE_SHADE', {force: false})
     },
     closeForm: function() {
       this.$store.commit('TOGGLE_SHADE', {force: false})

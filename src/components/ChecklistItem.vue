@@ -17,6 +17,12 @@
     <font-awesome-icon
       v-show="formData[formKey]"
       icon="check-square" />
+
+    <font-awesome-icon
+      v-if="icon_name.length"
+      class="item-icon"
+      :icon="icon_name" />
+
     <div class="checklist-text">{{formTitle}}</div>
   </label>
 </template>
@@ -28,7 +34,13 @@ export default {
     formData: { 'type': Object, 'default': {} },
     formKey: { 'type': String, 'default': '' },
     formTitle: { 'type': String, 'default': '' },
-    formFinished: {'type': Boolean, default: false }
+    formFinished: {'type': Boolean, default: false },
+    label: {'type': Object }
+  },
+  computed: {
+    icon_name () {
+      return this.label.icon || ''
+    }
   }
 }
 </script>

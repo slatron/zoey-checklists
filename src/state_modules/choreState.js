@@ -73,15 +73,14 @@ export default {
       let todays_lists = []
       const list_cache = {}
 
-      function createListView(item_state_map, existing, id) {
+      function createListView(item_state_map, existing) {
         existing = existing || {}
         return {
           ...item_state_map,
           approved: existing.approved || false,
           comments: existing.comments || '',
           person: existing.person || 'ZOEY',
-          date: existing.date || Timestamp.fromDate(new Date()),
-          id: id
+          date: existing.date || Timestamp.fromDate(new Date())
         }
       }
 
@@ -99,7 +98,7 @@ export default {
               chore_state_map[chore.key] = day.data()[chore.key] || false
             })
 
-            return createListView(chore_state_map, day.data(), day.id)
+            return createListView(chore_state_map, day.data())
           })
 
           // filter out days before today
