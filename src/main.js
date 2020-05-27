@@ -15,9 +15,7 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faGrinBeam } from '@fortawesome/free-solid-svg-icons'
-
 import { faChessQueen } from '@fortawesome/free-solid-svg-icons'
-
 import { faHandsWash } from '@fortawesome/free-solid-svg-icons'
 import { faHandLizard } from '@fortawesome/free-solid-svg-icons'
 import { faBed } from '@fortawesome/free-solid-svg-icons'
@@ -26,10 +24,27 @@ import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { faShoePrints } from '@fortawesome/free-solid-svg-icons'
 import { faCat } from '@fortawesome/free-solid-svg-icons'
+import { faHandRock } from '@fortawesome/free-solid-svg-icons'
+import { faWalking } from '@fortawesome/free-solid-svg-icons'
+import { faPrescriptionBottle } from '@fortawesome/free-solid-svg-icons'
+import { faPumpSoap } from '@fortawesome/free-solid-svg-icons'
+import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { faTooth } from '@fortawesome/free-solid-svg-icons'
+import { faFaucet } from '@fortawesome/free-solid-svg-icons'
+import { faSoap } from '@fortawesome/free-solid-svg-icons'
+import { faHeadSideMask } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+library.add(faPrescriptionBottle)
+library.add(faWalking)
+library.add(faFaucet)
+library.add(faHeadSideMask)
+library.add(faTooth)
+library.add(faHandRock)
 library.add(faBars)
+library.add(faSoap)
+library.add(faMusic)
 library.add(faUtensils)
 library.add(faCat)
 library.add(faShoePrints)
