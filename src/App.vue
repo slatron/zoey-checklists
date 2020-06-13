@@ -60,7 +60,6 @@ export default {
       .then(() => {
         AppLayout.$store.dispatch('INIT_ITEMS')
           .then(() => {
-
             // TODO: ALL BUSINESS LOGIC TO SETUP LISTS IS IN 'INIT_LIST_CACHE'
             //       - REFACTOR TO SEPARATE MODULE
             AppLayout.$store.dispatch('INIT_LIST_CACHE')

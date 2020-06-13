@@ -70,6 +70,7 @@ export default {
       let recent_lists = []
       let todays_lists = []
       const list_cache = {}
+      const DEFAULT_PERSON = state.state.chore_people[0].key
 
       function createListView(item_state_map, existing) {
         existing = existing || {}
@@ -77,7 +78,7 @@ export default {
           ...item_state_map,
           approved: existing.approved || false,
           comments: existing.comments || '',
-          person: existing.person || 'ZOEY',
+          person: existing.person || DEFAULT_PERSON,
           date: existing.date || Timestamp.fromDate(new Date())
         }
       }
