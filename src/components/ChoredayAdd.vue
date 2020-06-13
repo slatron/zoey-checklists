@@ -69,11 +69,12 @@ export default {
       if (this.finished) return false
 
       let unfinished_chores = 0
-      for (const i in this.form_data) {
-        if (this.form_data[i] === false) {
+      this.items.forEach((item, i) => {
+        if (this.form_data[item.key] === false) {
           unfinished_chores++
         }
-      }
+      })
+
       const all_complete = unfinished_chores === 0
 
       if (!all_complete) {

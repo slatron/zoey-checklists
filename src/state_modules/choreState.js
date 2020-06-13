@@ -54,7 +54,6 @@ export default {
         })
     },
 
-
     INIT_ITEMS (state) {
       const list_items_by_person = {}
       db.collection('chores').get()
@@ -65,7 +64,6 @@ export default {
           state.commit('SET_ITEMS', list_items_by_person)
         })
     },
-
 
     // TODO: MOVE INIT LIST LOGIC TO MODULE
     INIT_LIST_CACHE (state) {
