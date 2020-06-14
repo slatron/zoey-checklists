@@ -19,7 +19,7 @@ export default new Router({
     {
       path: '/chores',
       name: 'chores',
-      component: () => import(/* webpackChunkName: "chores" */ './views/ChoredayAddView.vue')
+      component: () => import(/* webpackChunkName: "chores" */ './views/ChoreListView.vue')
     }
   ]
 })

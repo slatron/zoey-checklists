@@ -1,16 +1,16 @@
 <template>
-  <div class="choreday-add">
+  <div class="view-chorelist">
     <ChoredayAdd />
   </div>
 </template>
 
 <script>
-import ChoredayAdd from '@/components/ChoredayAdd.vue'
+import ChoreList from '@/components/ChoreList.vue'
 
 export default {
-  name: 'ChoredayAddView',
+  name: 'ChoreListView',
   components: {
-    ChoredayAdd
+    ChoreList
   },
   created () {
     let user = this.$store.state.chores.current_user

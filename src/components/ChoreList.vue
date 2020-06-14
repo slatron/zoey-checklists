@@ -1,6 +1,6 @@
 <template>
   <div
-   class="choreday-area checklist-items content-spacer"
+   class="chorelist-area checklist-items content-spacer"
    :class="{'bg-color-green': finished}"
   >
     <ConfirmNotAllFinished></ConfirmNotAllFinished>
@@ -37,7 +37,7 @@ import ConfirmNotAllFinished from '@/components/layout/ConfirmNotAllFinished'
 import ConfirmChoreSaved from '@/components/layout/ConfirmChoreSaved'
 
 export default {
-  name: 'ChoredayAdd',
+  name: 'ChoreList',
   components: {
     ChecklistItem,
     ConfirmNotAllFinished,
