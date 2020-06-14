@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="homeschool-read">
     <HomeschoolRead />
   </div>
@@ -13,4 +13,4 @@ export default {
     HomeschoolRead
   }
 }
-</script>
+</script> -->

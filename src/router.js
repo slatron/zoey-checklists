@@ -17,29 +17,9 @@ export default new Router({
       component: SelectPersonView
     },
     {
-      path: '/homeschool/read',
-      name: 'read-homeschool',
-      component: () => import(/* webpackChunkName: "read-homeschool" */ './views/HomeschoolReadView.vue')
-    },
-    {
       path: '/chores',
       name: 'chores',
       component: () => import(/* webpackChunkName: "chores" */ './views/ChoredayAddView.vue')
-    },
-    {
-      path: '/bonus',
-      name: 'bonus',
-      component: () => import(/* webpackChunkName: "bonus" */ './views/BonusAddView.vue')
-    },
-    {
-      path: '/homeschool',
-      name: 'homeschool',
-      component: () => import(/* webpackChunkName: "bonus" */ './views/HomeschoolAddView.vue')
-    },
-    {
-      path: '/rules',
-      name: 'rules',
-      component: () => import(/* webpackChunkName: "rules" */ './views/Rules.vue')
     }
   ]
 })

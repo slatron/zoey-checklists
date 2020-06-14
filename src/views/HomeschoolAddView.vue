@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="homeschool-add">
     <HomeschoolAdd />
   </div>
@@ -13,4 +13,4 @@ export default {
     HomeschoolAdd
   }
 }
-</script>
+</script> -->

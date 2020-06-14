@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="bonus-add">
     <BonusAdd />
   </div>
@@ -13,4 +13,4 @@ export default {
     BonusAdd
   }
 }
-</script>
+</script> -->

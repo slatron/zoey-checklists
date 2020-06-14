@@ -54,7 +54,7 @@ export default {
       const logged_in = user ? true : false
       AppLayout.$store.commit('SET_LOGIN_STATUS', {'status': logged_in})
     });
-    // Inint Cascade
+    // Init Cascade
     // TODO: Handle these better w/ async functions
     AppLayout.$store.dispatch('INIT_CHORE_PEOPLE')
       .then(() => {
