@@ -44,14 +44,14 @@ export default {
     ConfirmChoreSaved
   },
   created: function() {
-    const person_key = this.$store.state.chores.current_person.key
-    const chore_data = this.$store.state.chores.list_cache[person_key]
+    const user_key = this.$store.state.chores.current_user.key
+    const chore_data = this.$store.state.chores.list_cache[user_key]
     this.$store.commit('POPULATE_EXISTING_CHORES', chore_data)
   },
   computed: {
     items () {
-      const person_key = this.$store.state.chores.current_person.key
-      return this.$store.state.chores.list_items[person_key]
+      const user_key = this.$store.state.chores.current_user.key
+      return this.$store.state.chores.list_items[user_key]
     },
     form_data () {
       return this.$store.state.chores.form_data

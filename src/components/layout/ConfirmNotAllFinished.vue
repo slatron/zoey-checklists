@@ -30,8 +30,8 @@ export default {
     },
     unfinished_count () {
       const chores = this.$store.state.chores.form_data
-      const person_key = this.$store.state.chores.current_person.key
-      const items = this.$store.state.chores.list_items[person_key]
+      const user_key = this.$store.state.chores.current_user.key
+      const items = this.$store.state.chores.list_items[user_key]
       const chore_status = items.map(label => {
         return chores[label.key]
       })

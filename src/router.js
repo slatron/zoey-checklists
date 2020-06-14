@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SelectPersonView from './views/SelectPersonView.vue'
+import SelectUserView from './views/SelectUserView.vue'
 
 Vue.use(Router)
 
@@ -9,12 +9,12 @@ export default new Router({
     {
       path: '/',
       name: 'default-page',
-      component: SelectPersonView
+      component: SelectUserView
     },
     {
       path: '/select-chorelist',
       name: 'select-chorelist',
-      component: SelectPersonView
+      component: SelectUserView
     },
     {
       path: '/chores',

@@ -13,8 +13,8 @@ export default {
     ChoredayAdd
   },
   created () {
-    let person = this.$store.state.chores.current_person
-    if (!('key' in person)) {
+    let user = this.$store.state.chores.current_user
+    if (!('key' in user)) {
       this.$router.push('select-chorelist')
     }
   }

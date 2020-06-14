@@ -40,10 +40,10 @@ export default {
     },
     page_name () {
       let title = ''
-      let person = this.$store.state.chores.current_person.name
+      let user = this.$store.state.chores.current_user.name
       switch (this.$route.name) {
         case 'chores':
-          title = `${person}\'s Chore List`
+          title = `${user}\'s Chore List`
           break
         case 'homeschool':
           title = 'Zoey\s Homework List'
