@@ -1,7 +1,7 @@
 <template lang="html">
   <header>
     <div class="header-left">
-      <button type="button" class="hand nav-bars" @click="toggleDrawer"">
+      <button type="button" class="hand nav-bars" @click="toggleDrawer">
         <font-awesome-icon icon="bars" />
       </button>
     </div>
@@ -45,8 +45,8 @@ export default {
         case 'chores':
           title = `${user}\'s Chore List`
           break
-        case 'homeschool':
-          title = 'Zoey\s Homework List'
+        case 'school':
+          title = 'Zoeys Homework Checkist'
           break
         default:
           title = 'Slater Family Lists'

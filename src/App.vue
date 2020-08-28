@@ -58,11 +58,11 @@ export default {
     // TODO: Handle these better w/ async functions
     AppLayout.$store.dispatch('INIT_CHORE_PEOPLE')
       .then(() => {
-        AppLayout.$store.dispatch('INIT_ITEMS')
+        AppLayout.$store.dispatch('INIT_CHORES')
           .then(() => {
             // TODO: ALL BUSINESS LOGIC TO SETUP LISTS IS IN 'INIT_LIST_CACHE'
             //       - REFACTOR TO SEPARATE MODULE
-            AppLayout.$store.dispatch('INIT_LIST_CACHE')
+            AppLayout.$store.dispatch('INIT_CHORELIST_CACHE')
               .then(() => AppLayout.ready = true)
           })
       })

@@ -20,6 +20,11 @@ export default new Router({
       path: '/chores',
       name: 'chores',
       component: () => import(/* webpackChunkName: "chores" */ './views/ChoreListView.vue')
+    },
+    {
+      path: '/school',
+      name: 'school',
+      component: () => import(/* webpackChunkName: "school" */ './views/SchoolListView.vue')
     }
   ]
 })

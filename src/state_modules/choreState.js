@@ -54,7 +54,7 @@ export default {
         })
     },
 
-    INIT_ITEMS (state) {
+    INIT_CHORES (state) {
       const list_items_by_user = {}
       db.collection('chores').get()
         .then(function(chores) {
@@ -66,7 +66,7 @@ export default {
     },
 
     // TODO: MOVE INIT LIST LOGIC TO MODULE
-    INIT_LIST_CACHE (state) {
+    INIT_CHORELIST_CACHE (state) {
       let recent_lists = []
       let todays_lists = []
       const list_cache = {}

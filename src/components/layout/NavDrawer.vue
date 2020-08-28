@@ -6,6 +6,11 @@
           Chore List
         </router-link>
       </li>
+      <li>
+        <router-link to="/school">
+          School List
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>
