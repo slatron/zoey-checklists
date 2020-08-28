@@ -15,7 +15,7 @@ Made to keep track of my child's schoolwork during stay-at-home schooling
 1 Make a local clone and run npm install in the root directory
 
 ```
-$ npm run install
+$ npm install
 ```
 
 2 Create a `/secrets.js` file that exports your firebase config by default.
