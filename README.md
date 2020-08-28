@@ -15,10 +15,22 @@ Made to keep track of my child's schoolwork during stay-at-home schooling
 1 Make a local clone and run npm install in the root directory
 
 ```
-$ npm run install
+$ npm install
 ```
 
-2 Create a `/secrets.js` file that exports your firebase config by default.
+2 Create a `/src/secrets.js` file that exports your firebase config object by default.
+
+```
+export default {
+  apiKey: String,
+  authDomain: String,
+  databaseURL: String,
+  projectId: String,
+  storageBucket: String,
+  messagingSenderId: String,
+  appId: String
+}
+```
 
 Firebase authentication is set up to use web-based username and password.
 
