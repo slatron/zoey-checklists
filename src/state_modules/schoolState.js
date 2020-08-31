@@ -1,8 +1,12 @@
 import { db, Timestamp } from '@/db'
+import { tools } from '@/utils/MStools'
+
 
 export default {
   state: {
-    school_list: {},
+    school_list: {
+      'ZOEY': []
+    },
     school_form_data: {}
   },
 
@@ -21,7 +25,8 @@ export default {
       db.collection('school').get()
         .then(function(schoolLists) {
           schoolLists.docs.forEach(items => {
-            school_items_by_user[items.id] = items.data().schoollist
+            const sorted_items = items.data().schoollist.sort(tools().simpleSortByProperty('order'))
+            school_items_by_user[items.id] = sorted_items
           })
           state.commit('SET_SCHOOL_ITEMS', school_items_by_user)
         })

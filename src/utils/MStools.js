@@ -10,6 +10,10 @@ export const tools = () => {
       }
     },
 
+    simpleSortByProperty: function(field) {
+      return (a, b) => (a[field] > b[field]) ? 1 : -1
+    },
+
     pluck: function (array, key) {
       return array.map(o => o[key])
     },

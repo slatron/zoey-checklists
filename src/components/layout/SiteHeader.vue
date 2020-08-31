@@ -46,7 +46,7 @@ export default {
           title = `${user}\'s Chore List`
           break
         case 'school':
-          title = 'Zoeys Homework Checkist'
+          title = 'Zoeys Homework Review'
           break
         default:
           title = 'Slater Family Lists'

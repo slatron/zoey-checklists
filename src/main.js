@@ -8,7 +8,11 @@ import store from './store'
 // Font Awesome cli setup
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBook } from '@fortawesome/free-solid-svg-icons'
+import { faCalculator } from '@fortawesome/free-solid-svg-icons'
+import { faFlask } from '@fortawesome/free-solid-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { faRunning } from '@fortawesome/free-solid-svg-icons'
 import { faLockOpen } from '@fortawesome/free-solid-svg-icons'
 import { faPoo } from '@fortawesome/free-solid-svg-icons'
 import { faSquare } from '@fortawesome/free-solid-svg-icons'
@@ -43,6 +47,10 @@ library.add(faHeadSideMask)
 library.add(faTooth)
 library.add(faHandRock)
 library.add(faBars)
+library.add(faBook)
+library.add(faCalculator)
+library.add(faFlask)
+library.add(faRunning)
 library.add(faSoap)
 library.add(faMusic)
 library.add(faUtensils)
