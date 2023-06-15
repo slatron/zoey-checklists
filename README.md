@@ -1,6 +1,6 @@
 # zoey-checklists
 
-Made to keep track of my child's schoolwork during stay-at-home schooling
+This is a small vue/firebase application. I made it during the 2020 lockdown to keep track of my child's schoolwork and chores.
 
 ### Prerequisites
 
